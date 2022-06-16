@@ -1,3 +1,12 @@
+ <?php
+ 
+if(strlen($_SESSION['alogin'])=="")
+    {   
+    header("Location: index.php"); 
+    }
+
+ ?>
+
   <nav class="navbar top-navbar bg-white box-shadow">
             	<div class="container-fluid">
                     <div class="row">
