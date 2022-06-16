@@ -1,16 +1,28 @@
 <?php
 session_start();
-//error_reporting(0);
-include('../includes/config.php');
+error_reporting(0);
+include('includes/config.php');
+
 
 if(isset($_POST['submit'])){
 $registration=$_POST['regno'];
 $name_school=$_POST['schoolname']; 
 $natureofschool=$_POST['schooltype']; 
 
-$sql="INSERT INTO school(regno,schooname,schooltype) VALUES (:registration,:name_school,:natureofschool)";
+echo $registration;
+echo $name_school;
+echo $natureofschool;
 
 
+$sql = "INSERT INTO school(regno,schooname,schooltype) VALUES ('$registration','$name_school','$natureofschool')";
+
+if(mysqli_query($conn, $sql)) {
+    $msg = "School Added Successfully";
+} else {
+    $error = "Sorry Something went wrong try again";  
+}
+
+mysqli_close($conn);
 
 }
 ?>
@@ -81,13 +93,13 @@ $sql="INSERT INTO school(regno,schooname,schooltype) VALUES (:registration,:name
                                         </div>
                                     </div>
                                     <div class="panel-body">
-                                        <?php if($msg){?>
+                                        <?php if(@$msg){?>
                                         <div class="alert alert-success left-icon-alert" role="alert">
-                                            <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+                                            <strong>Well done! </strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
-                                        else if($error){?>
+                                        else if(@$error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap! </strong> <?php echo htmlentities($error); ?>
                                         </div>
                                         <?php } ?>
                                         <form action="" class="form-horizontal" method="post">
