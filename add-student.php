@@ -4,19 +4,22 @@ session_start();
 include('includes/config.php');
 
 if(isset($_POST['submit'])){
-$schoolid=$_POST['schoolid'];
-$f_name=$_POST['firstname']; 
+
+//$regno=$_POST['regno'];
+$school=$_POST['school'];
+$f_name=$_POST['firstname'];
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
-$sex=$_POST['sex'];
-$username=$_POST['uname'];
-$password=md5($_POST['pass']);
-$role=$_POST['role'];
+$gender=$_POST['sex']; 
+$tempregno = mt_rand(1, 999);
 
-$sql="INSERT INTO  users(sch_id,f_name,m_name,l_name,sex,username,password,role) VALUES('$schoolid','$f_name','$m_name','$l_name','$sex','$username','$password','$role')";
+ //die("$gender");
+
+$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','$school','$f_name','m_name','l_name','$gender')";
 if(mysqli_query($conn,$sql)){
     $msg = 'Added Successfully';
 }else{
+    die("wat");
     $error = 'Ooops! Try Again';
 }
 
@@ -58,7 +61,7 @@ if(mysqli_query($conn,$sql)){
                     <div class="container-fluid">
                         <div class="row page-title-div">
                             <div class="col-md-6">
-                                <h2 class="title">User Registration</h2>
+                                <h2 class="title">Student Admission</h2>
 
                             </div>
 
@@ -70,7 +73,7 @@ if(mysqli_query($conn,$sql)){
                                 <ul class="breadcrumb">
                                     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
 
-                                    <li class="active">User Registration</li>
+                                    <li class="active">Student Admission</li>
                                 </ul>
                             </div>
 
@@ -88,45 +91,30 @@ if(mysqli_query($conn,$sql)){
                                         </div>
                                     </div>
                                     <div class="panel-body">
-                                        <?php if($msg){?>
+                                        <?php if(@$msg){?>
                                         <div class="alert alert-success left-icon-alert" role="alert">
                                             <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
-else if($error){?>
+                                        else if(@$error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
                                             <strong>Failed !</strong> <?php echo htmlentities($error); ?>
                                         </div>
                                         <?php } ?>
-                                        <form class="form-horizontal" method="post">
-
+                                        <form  action="" class="form-horizontal" method="post">
+                                            <!-- Should provide Registration number to students -->
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">First Name</label>
+                                                <label for="default" class="col-sm-2 control-label">Registration
+                                                    No</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="firstname" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Second Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="middlename" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Last Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="lastname" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                    <input type="text" name="" class="form-control" id="fullanme"
+                                                        readonly value="system should provide number automatically">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">School</label>
                                                 <div class="col-sm-10">
-                                                    <select name="schoolid" required="" class="form-control">
+                                                    <select name="school" required="" class="form-control">
                                                         <option selected disabled>Choose school</option>
                                                         <!-- selected from the database -->
                                                         <?php
@@ -142,88 +130,77 @@ else if($error){?>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Sex</label>
+                                                <label for="default" class="col-sm-2 control-label">First Name</label>
                                                 <div class="col-sm-10">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadiosinline"
-                                                            id="optionsRadios3" value="option1" checked> Male
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadiosinline"
-                                                            id="optionsRadios4" value="option2"> Female
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">User Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="uname" class="form-control" id="fullanme"
+                                                    <input type="text" name="firstname" class="form-control" id="email"
                                                         required="required" autocomplete="off">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Password</label>
+                                                <label for="default" class="col-sm-2 control-label">Second Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="password" name="pass" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                    <input type="text" name="middlename" class="form-control" id="email"
+                                                        required="required" autocomplete="off">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Role</label>
+                                                <label for="default" class="col-sm-2 control-label">Last Name</label>
                                                 <div class="col-sm-10">
-                                                    <select name="role" class="form-control">
-                                                        <option selected>user</option>
-                                                        <option>Admin</option>
-                                                    </select>
+                                                    <input type="text" name="lastname" class="form-control" id="email"
+                                                        required="required" autocomplete="off">
                                                 </div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="default" class="col-sm-2 control-label">Gender</label>
+                                                <div class="col-sm-10">
+                                                    <input type="radio" name="sex" value="M" required="required"
+                                                        checked="">Male <input type="radio" name="sex" value="F"
+                                                        required="required">Female
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" name="submit"
+                                                        class="btn btn-primary">Add</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
                                     </div>
-
-
-
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" name="submit" class="btn btn-primary">Add</button>
-                                        </div>
-                                    </div>
-                                    </form>
-
                                 </div>
                             </div>
+                            <!-- /.col-md-12 -->
                         </div>
-                        <!-- /.col-md-12 -->
                     </div>
                 </div>
+                <!-- /.content-container -->
             </div>
-            <!-- /.content-container -->
+            <!-- /.content-wrapper -->
         </div>
-        <!-- /.content-wrapper -->
-    </div>
-    <!-- /.main-wrapper -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/pace/pace.min.js"></script>
-    <script src="js/lobipanel/lobipanel.min.js"></script>
-    <script src="js/iscroll/iscroll.js"></script>
-    <script src="js/prism/prism.js"></script>
-    <script src="js/select2/select2.min.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-    $(function($) {
-        $(".js-states").select2();
-        $(".js-states-limit").select2({
-            maximumSelectionLength: 2
+        <!-- /.main-wrapper -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/pace/pace.min.js"></script>
+        <script src="js/lobipanel/lobipanel.min.js"></script>
+        <script src="js/iscroll/iscroll.js"></script>
+        <script src="js/prism/prism.js"></script>
+        <script src="js/select2/select2.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+        $(function($) {
+            $(".js-states").select2();
+            $(".js-states-limit").select2({
+                maximumSelectionLength: 2
+            });
+            $(".js-states-hide").select2({
+                minimumResultsForSearch: Infinity
+            });
         });
-        $(".js-states-hide").select2({
-            minimumResultsForSearch: Infinity
-        });
-    });
-    </script>
+        </script>
 </body>
 
 </html>
