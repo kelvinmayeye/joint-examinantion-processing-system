@@ -14,7 +14,7 @@ echo $name_school;
 echo $natureofschool;
 
 
-$sql = "INSERT INTO school(regno,schooname,schooltype) VALUES ('$registration','$name_school','$natureofschool')";
+$sql = "INSERT INTO school(regno,schoolname,schooltype) VALUES ('$registration','$name_school','$natureofschool')";
 
 if(mysqli_query($conn, $sql)) {
     $msg = "School Added Successfully";

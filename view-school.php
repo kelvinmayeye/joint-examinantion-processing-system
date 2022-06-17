@@ -123,7 +123,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                                     <tr>
                                                         <td><?php echo $NO;?></td>
                                                         <td><?php echo $row['regno'];?></td>
-                                                        <td><?php echo $row['schooname'];?></td>
+                                                        <td><?php echo $row['schoolname'];?></td>
                                                         <td><?php echo $row['schooltype'];?></td>
                                                     </tr>
                                                     <?php $NO+1;} ?>

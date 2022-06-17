@@ -8,7 +8,7 @@ $subcode=$_POST['subcode'];
 $score=$_POST['score']; 
 
 
-$sql="INSERT INTO  score(subscore,score) VALUES('$subcode','$score')";
+$sql="INSERT INTO  score(subcode,score) VALUES('$subcode','$score')";
 if(mysqli_query($conn,$sql)){
     $msg = 'Added Successfully';
 }else{
@@ -95,7 +95,7 @@ else if($error){?>
                                         <form class="form-horizontal" method="post">
 
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Sub Score</label>
+                                                <label for="default" class="col-sm-2 control-label">Subject</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="subcode" class="form-control"
                                                          required="required">

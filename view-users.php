@@ -3,7 +3,7 @@ session_start();
 //error_reporting(0);
 include('includes/config.php');
 //the fetch query
-$query = mysqli_query($conn,"SELECT * FROM users where role='user'");
+$query = mysqli_query($conn,"SELECT * FROM users");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,18 +97,18 @@ $query = mysqli_query($conn,"SELECT * FROM users where role='user'");
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Reg number</th>
+                                                        <th>SNO</th>
+                                                       
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School Name</th>
-
+                                                        <th>Role</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Reg number</th>
+                        
+                                                        <th>S/NO</th>
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School Name</th>
@@ -124,10 +124,10 @@ $query = mysqli_query($conn,"SELECT * FROM users where role='user'");
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $NO;?></td>
-                                                        <td><?php echo $row['f_name'];?></td>
+                                                        <td><?php echo $row['f_name'].' '.$row['m_name'].' '.$row['l_name'];?></td>
                                                         <td><?php echo $row['sex'];?></td>
-                                                        <td><?php echo $row['username'];?></td>
                                                         <td><?php echo $row['sch_id'];?></td>
+                                                        <td><?php echo $row['role'];?></td>
                                                     </tr>
                                                     <?php $NO+1;} ?>
 

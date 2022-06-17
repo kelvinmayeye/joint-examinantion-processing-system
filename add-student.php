@@ -113,15 +113,15 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">School</label>
                                                 <div class="col-sm-10">
                                                     <select name="school" required="" class="form-control">
-                                                        <option selected disabled>Choose school</option>
+                                                        <option selected disabled hidden>Choose school</option>
                                                         <!-- selected from the database -->
                                                         <?php
-                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schooname      FROM school");
+                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");
 
                                                         while ($row = mysqli_fetch_array($getsch_id)) {
                                                         ?>
                                                         <option value="<?php echo $row['regno'];?>">
-                                                            <?php echo $row['schooname']; ?></option>
+                                                            <?php echo $row['schoolname']; ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>

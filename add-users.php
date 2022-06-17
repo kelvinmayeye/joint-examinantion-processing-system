@@ -8,7 +8,7 @@ $schoolid=$_POST['schoolid'];
 $f_name=$_POST['firstname']; 
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
-$sex=$_POST['sex'];
+$sex=$_POST['optionsRadiosinline'];
 $username=$_POST['uname'];
 $password=md5($_POST['pass']);
 $role=$_POST['role'];
@@ -130,12 +130,12 @@ else if($error){?>
                                                         <option selected disabled>Choose school</option>
                                                         <!-- selected from the database -->
                                                         <?php
-                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schooname      FROM school");
+                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");
 
                                                         while ($row = mysqli_fetch_array($getsch_id)) {
                                                         ?>
                                                         <option value="<?php echo $row['regno'];?>">
-                                                            <?php echo $row['schooname']; ?></option>
+                                                            <?php echo $row['schoolname']; ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -146,11 +146,11 @@ else if($error){?>
                                                 <div class="col-sm-10">
                                                     <label class="radio-inline">
                                                         <input type="radio" name="optionsRadiosinline"
-                                                            id="optionsRadios3" value="option1" checked> Male
+                                                            id="optionsRadios3" value="M" checked> Male
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="optionsRadiosinline"
-                                                            id="optionsRadios4" value="option2"> Female
+                                                            id="optionsRadios4" value="F"> Female
                                                     </label>
                                                 </div>
                                             </div>
@@ -175,8 +175,11 @@ else if($error){?>
                                                 <label for="default" class="col-sm-2 control-label">Role</label>
                                                 <div class="col-sm-10">
                                                     <select name="role" class="form-control">
-                                                        <option selected>user</option>
-                                                        <option>Admin</option>
+                                                        <option selected disabled hidden>user</option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="head">Head of School</option>
+                                                        <option value="academic">Academic</option>
+                                                        <option value="teacher">Teacher</option>
                                                     </select>
                                                 </div>
                                             </div>
