@@ -129,7 +129,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>
                                                     </tr>
-                                                    <?php $NO+1;} ?>
+                                                    <?php $NO=$NO+1;} ?>
 
 
                                                 </tbody>

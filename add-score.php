@@ -87,18 +87,43 @@ if(mysqli_query($conn,$sql)){
                                         <div class="alert alert-success left-icon-alert" role="alert">
                                             <strong>Success!</strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
-else if($error){?>
+                                        else if($error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
                                             <strong>Failed !</strong> <?php echo htmlentities($error); ?>
                                         </div>
                                         <?php } ?>
                                         <form class="form-horizontal" method="post">
 
+<<<<<<< HEAD
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject</label>
+=======
+                                             <div class="form-group">
+                                                <label for="default" class="col-sm-2 control-label">School</label>
+>>>>>>> 78f5feb82d4895cf569f24b3ac721306408dd135
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="subcode" class="form-control"
-                                                         required="required">
+                                                    <select name="school" required="" class="form-control">
+
+                                                        <option selected disabled>Choose subject</option>
+                                                        <!-- selected from the database -->
+                                                        <?php
+                                                        $getsch_id = mysqli_query($conn,"SELECT subcode,subname FROM subject");
+                                                        if(mysqli_num_rows($getsch_id)==0){
+                                                            $nores = "No subject";
+                                                        }
+
+                                                        while ($row = mysqli_fetch_array($getsch_id)) {
+                                                        ?>
+                                                        <option value="<?php echo $row['subcode'];?>">
+                                                            <?php
+                                                            echo $row['subname']; ?></option>
+                                                        <?php } 
+                                                            if($nores=="No subject"){
+                                                                echo "<option>No Subject Added</option>";
+                                                            }
+                                                        ?>
+
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -109,14 +134,6 @@ else if($error){?>
                                                          required="required">
                                                 </div>
                                             </div>
-
-                                            
-
-                                    </div>
-
-
-
-
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" name="submit" class="btn btn-primary">Add</button>
