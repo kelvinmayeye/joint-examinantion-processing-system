@@ -32,7 +32,7 @@
                                         <a href="#"><i class="fa fa-file-text"></i> <span>Users</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-users.php"><i class="fa fa-bars"></i> <span>Add User</span></a></li>
-                                            <li><a href="manage-subjects.php"><i class="fa fa fa-server"></i> <span>Manage User</span></a></li>
+                                            <li><a href="view-users.php"><i class="fa fa fa-server"></i> <span>View User</span></a></li>
                                            <!-- <li><a href="add-subjectcombination.php"><i class="fa fa-newspaper-o"></i> <span>Add Subject Combination </span></a></li>
                                            <a href="manage-subjectcombination.php"><i class="fa fa-newspaper-o"></i> <span>Manage Subject Combination </span></a></li> -->
                                         </ul>
