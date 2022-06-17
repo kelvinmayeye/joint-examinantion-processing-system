@@ -125,7 +125,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                     <tr>
                                                         <td><?php echo $NO;?></td>
                                                         <td><?php echo $row['f_name'].' '.$row['m_name'].' '.$row['l_name'];?></td>
-                                                        <td><?php echo $row['sex'];?></td>
+                                                        <td><b><?php echo $row['sex'];?></b></td>
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>
                                                     </tr>

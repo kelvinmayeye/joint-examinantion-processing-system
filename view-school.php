@@ -126,10 +126,11 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                                         <td><?php echo $row['schoolname'];?></td>
                                                         <td><?php echo $row['schooltype'];?></td>
                                                     </tr>
-                                                    <?php $NO+1;} ?>
+                                                    
 
 
                                                 </tbody>
+                                                <?php $NO=$NO+1;} ?>
                                             </table>
 
 
