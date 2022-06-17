@@ -13,13 +13,11 @@ $l_name=$_POST['lastname'];
 $gender=$_POST['sex']; 
 $tempregno = mt_rand(1, 999);
 
- //die("$gender");
 
 $sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','$school','$f_name','m_name','l_name','$gender')";
 if(mysqli_query($conn,$sql)){
     $msg = 'Added Successfully';
 }else{
-    die("wat");
     $error = 'Ooops! Try Again';
 }
 
@@ -107,7 +105,7 @@ if(mysqli_query($conn,$sql)){
                                                     No</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="" class="form-control" id="fullanme"
-                                                        readonly value="system should provide number automatically">
+                                                        readonly value="system provide number automatically">
                                                 </div>
                                             </div>
 
