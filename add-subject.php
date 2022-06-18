@@ -1,30 +1,23 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/config.php');
-if(isset($_POST['submit']))
-{
-$subcode=$_POST['idsomo'];
-$subname=$_POST['jinalasomo']; 
+
+if(isset($_POST['submit'])){
+
+//$regno=$_POST['regno'];
+$subcode=$_POST['subcode'];
+$subname=$_POST['subname'];
+//$tempregno = mt_rand(1, 999);
 
 
 
-$status=1;
-$sql="INSERT INTO  subject(subcode,subname) VALUES(:idsomo,:jinalasomo)";
-$query = $dbh->prepare($sql);
-$query->bindParam(':idsomo',$subcode,PDO::PARAM_STR);
-$query->bindParam(':jinalasomo',$subname,PDO::PARAM_STR);
-
-
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$msg="Student info added successfully";
-}
-else 
-{
-$error="Something went wrong. Please try again";
+$sql="INSERT INTO  subject(subcode,subname) VALUES('$subcode','$subname')";
+if(mysqli_query($conn,$sql)){
+    $msg = 'Added Successfully';
+}else{
+    die("Stoooop");
+    $error = 'Ooops! Try Again';
 }
 
 }
@@ -109,16 +102,16 @@ else if($error){?>
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject Code</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="idsomo" class="form-control" id="fullanme"
-                                                        required="required" autocomplete="off">
+                                                    <input type="text" name="subcode" class="form-control" id="fullanme"
+                                                        required="required" placeholder="eg.123">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="jinalasomo" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                    <input type="text" name="subname" class="form-control"
+                                                        id="fullanme" required="required" placeholder="eg.Mathematics">
                                                 </div>
                                             </div>
 
