@@ -1,8 +1,8 @@
 <?php
 session_start();
-//error_reporting(0);
-include('includes/config.php');
 
+include('includes/config.php');
+//error_reporting(0);
 if(isset($_POST['submit'])){
 $schoolid=$_POST['schoolid'];
 $f_name=$_POST['firstname']; 
@@ -17,6 +17,7 @@ $sql="INSERT INTO  users(sch_id,f_name,m_name,l_name,sex,username,password,role)
 if(mysqli_query($conn,$sql)){
     $msg = 'Added Successfully';
 }else{
+
     $error = 'Ooops! Try Again';
 }
 
@@ -29,7 +30,7 @@ if(mysqli_query($conn,$sql)){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SMS Admin| Student Admission< </title>
+    <title>SMS Admin| User Admission< </title>
             <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
             <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
             <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
