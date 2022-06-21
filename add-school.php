@@ -9,16 +9,13 @@ $registration=$_POST['regno'];
 $name_school=$_POST['schoolname']; 
 $natureofschool=$_POST['schooltype']; 
 
-echo $registration;
-echo $name_school;
-echo $natureofschool;
-
-
 $sql = "INSERT INTO school(regno,schoolname,schooltype) VALUES ('$registration','$name_school','$natureofschool')";
+//select regno b4 inserting to chech if exists
 
 if(mysqli_query($conn, $sql)) {
     $msg = "School Added Successfully";
 } else {
+    
     $error = "Sorry Something went wrong try again";  
 }
 

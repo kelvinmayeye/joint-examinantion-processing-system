@@ -14,10 +14,12 @@ $gender=$_POST['sex'];
 $tempregno = mt_rand(1, 999);
 
 
-$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','$school','$f_name','m_name','l_name','$gender')";
+
+$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','$school','$f_name','$m_name','$l_name','$gender')";
 if(mysqli_query($conn,$sql)){
     $msg = 'Added Successfully';
 }else{
+    die("Stoooop");
     $error = 'Ooops! Try Again';
 }
 
@@ -131,7 +133,7 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">First Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="firstname" class="form-control" id="email"
-                                                        required="required" autocomplete="off">
+                                                        required="required">
                                                 </div>
                                             </div>
 
@@ -139,7 +141,7 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">Second Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="middlename" class="form-control" id="email"
-                                                        required="required" autocomplete="off">
+                                                        required="required">
                                                 </div>
                                             </div>
 
@@ -147,7 +149,7 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">Last Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="lastname" class="form-control" id="email"
-                                                        required="required" autocomplete="off">
+                                                        required="required">
                                                 </div>
                                             </div>
 

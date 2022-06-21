@@ -4,14 +4,18 @@ session_start();
 include('includes/config.php');
 
 if(isset($_POST['submit'])){
-$subcode=$_POST['subcode'];
+$subject=$_POST['subject'];
 $score=$_POST['score']; 
 
 
-$sql="INSERT INTO  score(subcode,score) VALUES('$subcode','$score')";
+$sql="INSERT INTO  scores(subcode,score) VALUES('$subject','$score')";
 if(mysqli_query($conn,$sql)){
     $msg = 'Added Successfully';
 }else{
+
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+
+    die("<br>hehhr");
     $error = 'Ooops! Try Again';
 }
 
@@ -93,6 +97,10 @@ if(mysqli_query($conn,$sql)){
                                         </div>
                                         <?php } ?>
                                         <form class="form-horizontal" method="post">
+<<<<<<< HEAD
+                                            <div class="form-group">
+                                                <label for="default" class="col-sm-2 control-label">Subject</label>
+=======
 
 
                                             <div class="form-group">
@@ -101,8 +109,9 @@ if(mysqli_query($conn,$sql)){
                                              <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">School</label>
 
+>>>>>>> b3a95b0648afd452c2e8aa0fc92d72d27445614b
                                                 <div class="col-sm-10">
-                                                    <select name="school" required="" class="form-control">
+                                                    <select name="subject" required="" class="form-control">
 
                                                         <option selected disabled>Choose subject</option>
                                                         <!-- selected from the database -->
@@ -131,7 +140,7 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">Score</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="score" class="form-control"
-                                                         required="required">
+                                                         required="required" placeholder="eg.78">
                                                 </div>
                                             </div>
                                     <div class="form-group">
