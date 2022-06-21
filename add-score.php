@@ -97,8 +97,19 @@ if(mysqli_query($conn,$sql)){
                                         </div>
                                         <?php } ?>
                                         <form class="form-horizontal" method="post">
+<<<<<<< HEAD
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject</label>
+=======
+
+
+                                            <div class="form-group">
+                                                <label for="default" class="col-sm-2 control-label">Subject</label>
+
+                                             <div class="form-group">
+                                                <label for="default" class="col-sm-2 control-label">School</label>
+
+>>>>>>> b3a95b0648afd452c2e8aa0fc92d72d27445614b
                                                 <div class="col-sm-10">
                                                     <select name="subject" required="" class="form-control">
 
