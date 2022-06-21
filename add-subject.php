@@ -1,39 +1,25 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/config.php');
-if(strlen($_SESSION['alogin'])=="")
-    {   
-    header("Location: index.php"); 
-    }
-    else{
 if(isset($_POST['submit']))
 {
-$subcode=$_POST['idsomo'];
-$subname=$_POST['jinalasomo']; 
+$subcode=$_POST['subcode'];
+$subname=$_POST['subname']; 
 
+$sql = "INSERT INTO subject(subcode,subname) VALUES ('$subcode','$subname')";
 
-
-$status=1;
-$sql="INSERT INTO  subject(subcode,subname) VALUES(:idsomo,:jinalasomo)";
-$query = $dbh->prepare($sql);
-$query->bindParam(':idsomo',$subcode,PDO::PARAM_STR);
-$query->bindParam(':jinalasomo',$subname,PDO::PARAM_STR);
-
-
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$msg="Student info added successfully";
+if(mysqli_query($conn, $sql)) {
+     "Subject Added Successfully";
+} else {
+    $error = "Sorry Something went wrong try again";  
 }
-else 
-{
-$error="Something went wrong. Please try again";
-}
+
+mysqli_close($conn);
 
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -98,40 +84,33 @@ $error="Something went wrong. Please try again";
                                                 </div>
                                             </div>
                                             <div class="panel-body">
-<?php if($msg){?>
-<div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
- </div><?php } 
-else if($error){?>
-    <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
-                                        </div>
-                                        <?php } ?>
-                                                <form class="form-horizontal" method="post">
+
+                <form action="" class="form-horizontal"  method="post">
 
 <div class="form-group">
 <label for="default" class="col-sm-2 control-label">Subject Code</label>
 <div class="col-sm-10">
-<input type="text" name="idsomo" class="form-control" id="fullanme" required="required" autocomplete="off">
+
+<input type="text" name="subcode" class="form-control" id="fullanme" required="required" autocomplete="off">
 </div>
 </div>
 
 <div class="form-group">
 <label for="default" class="col-sm-2 control-label">Subject Name</label>
 <div class="col-sm-10">
-<input type="text" name="jinalasomo" class="form-control" id="fullanme" required="required" autocomplete="off">
+
+<input type="text" name="subname" class="form-control" id="fullanme" required="required" autocomplete="off">
 </div>
 </div>
 
 
-          </div>
 
                                                     
 
                                                     
                                                     <div class="form-group">
                                                         <div class="col-sm-offset-2 col-sm-10">
-                                                            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+  <input type="submit" name="Submit" value="Add" class="btn btn-primary">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -169,4 +148,3 @@ else if($error){?>
         </script>
     </body>
 </html>
-<?PHP } ?>

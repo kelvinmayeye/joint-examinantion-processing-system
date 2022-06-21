@@ -94,13 +94,13 @@ if(mysqli_query($conn,$sql)){
                                         <?php } ?>
                                         <form class="form-horizontal" method="post">
 
-<<<<<<< HEAD
+
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject</label>
-=======
+
                                              <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">School</label>
->>>>>>> 78f5feb82d4895cf569f24b3ac721306408dd135
+
                                                 <div class="col-sm-10">
                                                     <select name="school" required="" class="form-control">
 
