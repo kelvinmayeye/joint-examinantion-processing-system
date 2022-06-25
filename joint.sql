@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `grade` (
-  `id` int(15) NOT NULL,
+  `id` int(15) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `gradename` varchar(100) NOT NULL,
   `start_value` int(10) NOT NULL,
   `end_value` int(10) NOT NULL,

@@ -2,42 +2,28 @@
 session_start();
 //error_reporting(0);
 include('includes/config.php');
-<<<<<<< HEAD
+
 
 if(isset($_POST['submit'])){
+$subjectcode=$_POST['subcode'];
+$subjectname=$_POST['subname']; 
+ 
 
-//$regno=$_POST['regno'];
-$subcode=$_POST['subcode'];
-$subname=$_POST['subname'];
-//$tempregno = mt_rand(1, 999);
-
-
-
-$sql="INSERT INTO  subject(subcode,subname) VALUES('$subcode','$subname')";
-if(mysqli_query($conn,$sql)){
-    $msg = 'Added Successfully';
-}else{
-    die("Stoooop");
-    $error = 'Ooops! Try Again';
-=======
-if(isset($_POST['submit']))
-{
-$subcode=$_POST['subcode'];
-$subname=$_POST['subname']; 
-
-$sql = "INSERT INTO subject(subcode,subname) VALUES ('$subcode','$subname')";
+$sql = "INSERT INTO subject(subcode,subname) VALUES ('$subjectcode','$subjectname')";
+//select regno b4 inserting to chech if exists
 
 if(mysqli_query($conn, $sql)) {
-     "Subject Added Successfully";
+    $msg = "Subject Added Successfully";
 } else {
+    
     $error = "Sorry Something went wrong try again";  
->>>>>>> b3a95b0648afd452c2e8aa0fc92d72d27445614b
 }
 
 mysqli_close($conn);
 
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,14 +54,13 @@ mysqli_close($conn);
 
                 <!-- ========== LEFT SIDEBAR ========== -->
                 <?php include('includes/leftbar.php');?>
-                <!-- /.left-sidebar -->
 
                 <div class="main-page">
 
                     <div class="container-fluid">
                         <div class="row page-title-div">
                             <div class="col-md-6">
-                                <h2 class="title">Subject Registration</h2>
+                                <h2 class="title">Subject Information</h2>
 
                             </div>
 
@@ -87,7 +72,7 @@ mysqli_close($conn);
                                 <ul class="breadcrumb">
                                     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
 
-                                    <li class="active">Subject Registration</li>
+                                    <li class="active">Subject Admission</li>
                                 </ul>
                             </div>
 
@@ -97,7 +82,6 @@ mysqli_close($conn);
                     <div class="container-fluid">
 
                         <div class="row">
-<<<<<<< HEAD
                             <div class="col-md-12">
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -106,120 +90,54 @@ mysqli_close($conn);
                                         </div>
                                     </div>
                                     <div class="panel-body">
-                                        <?php if($msg){?>
+                                        <?php if(@$msg){?>
                                         <div class="alert alert-success left-icon-alert" role="alert">
-                                            <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+                                            <strong>Well done! </strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
-else if($error){?>
+                                        else if(@$error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap! </strong> <?php echo htmlentities($error); ?>
                                         </div>
                                         <?php } ?>
-                                        <form class="form-horizontal" method="post">
+                                        <form action="" class="form-horizontal" method="post">
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject Code</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="subcode" class="form-control" id="fullanme"
-                                                        required="required" placeholder="eg.123">
+                                                    <input type="number" name="subcode" class="form-control" id="fullanme"
+                                                        required="required" autocomplete="off">
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Subject Name</label>
+                                                <label for="subname" class="col-sm-2 control-label">Subject
+                                                    Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="subname" class="form-control"
-                                                        id="fullanme" required="required" placeholder="eg.Mathematics">
+                                                        id="rollid" required="required" autocomplete="off">
                                                 </div>
                                             </div>
 
-=======
-                                    <div class="col-md-12">
-                                        <div class="panel">
-                                            <div class="panel-heading">
-                                                <div class="panel-title">
-                                                    <h5>Fill the Subject info</h5>
+                                           
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" name="submit"
+                                                        class="btn btn-primary">Add</button>
                                                 </div>
                                             </div>
-                                            <div class="panel-body">
-
-                <form action="" class="form-horizontal"  method="post">
-
-<div class="form-group">
-<label for="default" class="col-sm-2 control-label">Subject Code</label>
-<div class="col-sm-10">
-
-<input type="text" name="subcode" class="form-control" id="fullanme" required="required" autocomplete="off">
-</div>
-</div>
-
-<div class="form-group">
-<label for="default" class="col-sm-2 control-label">Subject Name</label>
-<div class="col-sm-10">
-
-<input type="text" name="subname" class="form-control" id="fullanme" required="required" autocomplete="off">
-</div>
-</div>
->>>>>>> b3a95b0648afd452c2e8aa0fc92d72d27445614b
+                                        </form>
 
                                     </div>
-
-
-
-<<<<<<< HEAD
-=======
-                                                    
-                                                    <div class="form-group">
-                                                        <div class="col-sm-offset-2 col-sm-10">
-  <input type="submit" name="Submit" value="Add" class="btn btn-primary">
-                                                        </div>
-                                                    </div>
-                                                </form>
->>>>>>> b3a95b0648afd452c2e8aa0fc92d72d27445614b
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" name="submit" class="btn btn-primary">Add</button>
-                                        </div>
-                                    </div>
-                                    </form>
-
                                 </div>
                             </div>
+                            <!-- /.col-md-12 -->
                         </div>
-                        <!-- /.col-md-12 -->
                     </div>
                 </div>
+                <!-- /.content-container -->
             </div>
-            <!-- /.content-container -->
+            <!-- /.content-wrapper -->
         </div>
-<<<<<<< HEAD
-        <!-- /.content-wrapper -->
-    </div>
-    <!-- /.main-wrapper -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/pace/pace.min.js"></script>
-    <script src="js/lobipanel/lobipanel.min.js"></script>
-    <script src="js/iscroll/iscroll.js"></script>
-    <script src="js/prism/prism.js"></script>
-    <script src="js/select2/select2.min.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-    $(function($) {
-        $(".js-states").select2();
-        $(".js-states-limit").select2({
-            maximumSelectionLength: 2
-        });
-        $(".js-states-hide").select2({
-            minimumResultsForSearch: Infinity
-        });
-    });
-    </script>
-</body>
-
-</html>
-=======
         <!-- /.main-wrapper -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -230,16 +148,16 @@ else if($error){?>
         <script src="js/select2/select2.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-            $(function($) {
-                $(".js-states").select2();
-                $(".js-states-limit").select2({
-                    maximumSelectionLength: 2
-                });
-                $(".js-states-hide").select2({
-                    minimumResultsForSearch: Infinity
-                });
+        $(function($) {
+            $(".js-states").select2();
+            $(".js-states-limit").select2({
+                maximumSelectionLength: 2
             });
+            $(".js-states-hide").select2({
+                minimumResultsForSearch: Infinity
+            });
+        });
         </script>
-    </body>
+</body>
+
 </html>
->>>>>>> b3a95b0648afd452c2e8aa0fc92d72d27445614b
