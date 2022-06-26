@@ -163,7 +163,7 @@ error_reporting(0);
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 }
-                toastr["success"]( "Welcome to Templete Management System!");
+                toastr["success"]( "Welcome to Joint Examination Results Management System!");
 
             });
         </script>
