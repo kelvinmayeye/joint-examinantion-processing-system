@@ -86,7 +86,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <div class="panel-title">
-                                                <h5>View Students Info</h5>
+                                                <h5>View Students Information</h5>
                                             </div>
                                         </div>
                                         <div class="panel-body p-20">
@@ -100,6 +100,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                         <th>Middlename</th>
                                                         <th>Lastname</th>
                                                         <th>Sex</th>
+                                                        <th>School</th>
 
                                                     </tr>
                                                 </thead>
@@ -110,6 +111,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                         <th>Middlename</th>
                                                         <th>Lastname</th>
                                                         <th>Sex</th>
+                                                        <th>School</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -126,6 +128,8 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                         <td><?php echo $row['m_name'];?></td>
                                                         <td><?php echo $row['l_name'];?></td>
                                                         <td><?php echo $row['sex'];?></td>
+
+                                                        <td></td>
                                                     </tr>
                                                     <?php } ?>
 

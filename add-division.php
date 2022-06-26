@@ -3,7 +3,7 @@ session_start();
 //error_reporting(0);
 include('includes/config.php');
 //the fetch query
-$query = mysqli_query($conn,"SELECT * FROM subject");
+$query = mysqli_query($conn,"SELECT * FROM grade");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jeprs | View Subjects</title>
+    <title>Jeprs | Best ten</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
     <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
@@ -56,7 +56,7 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                     <div class="container-fluid">
                         <div class="row page-title-div">
                             <div class="col-md-6">
-                                <h2 class="title">View All Subjects</h2>
+                                <h2 class="title">Division Criteria</h2>
 
                             </div>
 
@@ -67,8 +67,8 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                             <div class="col-md-6">
                                 <ul class="breadcrumb">
                                     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
-                                    <li> Subjects</li>
-                                    <li class="active">View Subjects</li>
+                                    <li> School</li>
+                                    <li class="active">View Division Criteria</li>
                                 </ul>
                             </div>
 
@@ -80,15 +80,13 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                     <section class="section">
                         <div class="container-fluid">
 
-
-
                             <div class="row">
                                 <div class="col-md-12">
 
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <div class="panel-title">
-                                                <h5>View Subjects Information</h5>
+                                                <h5>View Division Information</h5>
                                             </div>
                                         </div>
                                         <div class="panel-body p-20">
@@ -97,34 +95,47 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>SNO</th>
-                                                       
-                                                        <th>Subject Code</th>
-                                                        <th>Subject Name</th>
+
+
+                                                        <th>Id</th>
+                                                        <th>Division</th>
+                                                        <th>Start Point</th>
+                                                        <th>End Point</th>
+                                                        <th>Comments</th>
+
+
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
-                        
-                                                        <th>S/NO</th>
-                                                        <th>Fullname</th>
-                                                        <th>Sex</th>
+
+
+                                                        <th>Id</th>
+                                                        <th>Division</th>
+                                                        <th>Start Point</th>
+                                                        <th>End Point</th>
+                                                        <th>Comments</th>
+
+                                                            
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
 
 
                                                     <?php
-                                                $NO = 1;
+                                                //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
                 
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $NO;?></td>
-                                                        <td><?php echo $row['subcode'];?></td>
-                                                        <td><b><?php echo $row['subname'];?></b></td>
+                                                       <td></td>
+                                                       <td></td>
+                                                       <td></td>
+                                                       <td></td>
+                                                       <td></td>
+                                                        
                                                     </tr>
-                                                    <?php $NO=$NO+1;} ?>
+                                                    <?php } ?>
 
 
                                                 </tbody>

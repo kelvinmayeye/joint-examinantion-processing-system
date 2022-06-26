@@ -85,7 +85,7 @@ if(mysqli_query($conn,$sql)){
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <div class="panel-title">
-                                            <h5>Fill the Subject info</h5>
+                                            <h5>Fill the Subject information</h5>
                                         </div>
                                     </div>
                                     <div class="panel-body">

@@ -88,7 +88,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <div class="panel-title">
-                                                <h5>View Schools Info</h5>
+                                                <h5>View User Information</h5>
                                             </div>
                                         </div>
                                         <div class="panel-body p-20">

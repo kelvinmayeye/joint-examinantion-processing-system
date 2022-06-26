@@ -20,7 +20,7 @@
                                    <!--  <li class="nav-header">
                                         <span class="">Appearance</span>
                                     </li> -->
-                                    <?php if($_SESSION['role']==='admin' || $_SESSION['role']==='head'){ ?>
+                                    <?php if($_SESSION['role']==='admin'){ ?>
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-file-text"></i> <span>School</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
@@ -40,6 +40,8 @@
                                     </li>
                                     <?php } ?>
 
+
+                                    <?php if($_SESSION['role']==='admin'|| $_SESSION['role']==='head'|| $_SESSION['role']==='academic'){ ?>
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-users"></i> <span>Students</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
@@ -48,6 +50,7 @@
                                            
                                         </ul>
                                     </li>
+                                    <?php } ?>
 
                                     <?php if($_SESSION['role']==='admin' || $_SESSION['role']==='head'){ ?>
                                     <li class="has-children">
@@ -60,12 +63,12 @@
                                     </li>
                                 <?php } ?>
 
-                                    <?php if($_SESSION['role']==='admin' || $_SESSION['role']==='head'){ ?>
+                                    <?php if($_SESSION['role']==='admin'){ ?>
                                     <li class="has-children">
-                                        <a href="#"><i class="fa fa-users"></i> <span>Grading</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href=""><i class="fa fa-users"></i> <span>Grading</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="#Best-ten.php"><i class="fa fa-bars"></i> <span>Add Grade</span></a></li>
-                                            <li><a href="#"><i class="fa fa fa-server"></i> <span>View Grade defined</span></a></li>
+                                            <li><a href="add-grade.php"><i class="fa fa-bars"></i> <span>Add Grade Criteria</span></a></li>
+                                            <li><a href="add-division.php"><i class="fa fa fa-server"></i> <span>Add Division Criteria</span></a></li>
                                            
                                         </ul>
                                     </li>
