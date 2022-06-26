@@ -8,22 +8,6 @@ $password=md5($_POST['password']);
 
 $sql_ad  ="SELECT username,password,role FROM users WHERE username='$uname' and password='$password'";
 
-//$sql_ad ="SELECT * FROM users WHERE username='$uname' and password='$password'";
-
-// $result = mysqli_query($conn, $sql);
-
-
-//         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-//         $count = mysqli_num_rows($result);  
-          
-//         if($count == 1){
-//             // Start the session
-//                 session_start();
-//                 $_SESSION['alogin']=$_POST['username'];
-//                 //redirect to the next page
-//             header('Location: dashboard.php');
-
-//         }
 
 $result_ad = mysqli_query($conn, $sql_ad);
 
@@ -32,19 +16,37 @@ $result_ad = mysqli_query($conn, $sql_ad);
           
         if($count == 1){
 
-            $test = $row['role'];
+            $role = $row['role'];
 
-            switch ($test) {
+            switch ($role) {
             case "admin":
                  session_start();
                  $_SESSION['alogin']=$_POST['username'];
-                 $_SESSION['role'] = $test;
+                 $_SESSION['role'] = $role;
                  //redirect to the next page
             header('Location: dashboard.php');
 
             break;
-            case "user":
-                $msg= "Your the user!";
+            case "teacher":
+                session_start();
+                 $_SESSION['alogin']=$_POST['username'];
+                 $_SESSION['role'] = $role;
+                 //redirect to the next page
+            header('Location: dashboard.php');
+            break;
+            case "head":
+                session_start();
+                 $_SESSION['alogin']=$_POST['username'];
+                 $_SESSION['role'] = $role;
+                 //redirect to the next page
+            header('Location: dashboard.php');
+            case "academic":
+                session_start();
+                 $_SESSION['alogin']=$_POST['username'];
+                 $_SESSION['role'] = $role;
+                 //redirect to the next page
+            header('Location: dashboard.php');
+            break;
             break;
             default:
                 $msg= "ooops sorrry";

@@ -15,7 +15,7 @@ $role=$_POST['role'];
 
 $sql="INSERT INTO  users(sch_id,f_name,m_name,l_name,sex,username,password,role) VALUES('$schoolid','$f_name','$m_name','$l_name','$sex','$username','$password','$role')";
 if(mysqli_query($conn,$sql)){
-    $msg = 'Added Successfully';
+    $msg = 'User were added';
 }else{
 
     $error = 'Ooops! Try Again';
@@ -91,7 +91,7 @@ if(mysqli_query($conn,$sql)){
                                     <div class="panel-body">
                                         <?php if($msg){?>
                                         <div class="alert alert-success left-icon-alert" role="alert">
-                                            <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+                                            <strong>Success!</strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
 else if($error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
@@ -131,7 +131,7 @@ else if($error){?>
                                                         <option selected disabled>Choose school</option>
                                                         <!-- selected from the database -->
                                                         <?php
-                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");
+                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schoolname FROM school");
 
                                                         while ($row = mysqli_fetch_array($getsch_id)) {
                                                         ?>
@@ -176,7 +176,7 @@ else if($error){?>
                                                 <label for="default" class="col-sm-2 control-label">Role</label>
                                                 <div class="col-sm-10">
                                                     <select name="role" class="form-control">
-                                                        <option selected disabled hidden>user</option>
+                                                        <option selected disabled hidden>Choose user role</option>
                                                         <option value="admin">Admin</option>
                                                         <option value="head">Head of School</option>
                                                         <option value="academic">Academic</option>

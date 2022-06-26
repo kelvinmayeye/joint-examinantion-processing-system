@@ -101,6 +101,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                                         <th>Reg number</th>
                                                         <th>Name</th>
                                                         <th>Type</th>
+                                                        <th>Action</th>
 
                                                     </tr>
                                                 </thead>
@@ -110,6 +111,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                                         <th>Reg number</th>
                                                         <th>Name</th>
                                                         <th>Type</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -125,6 +127,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                                         <td><?php echo $row['regno'];?></td>
                                                         <td><?php echo $row['schoolname'];?></td>
                                                         <td><?php echo $row['schooltype'];?></td>
+                                                        <td></td>
                                                     </tr>
                                                     
 

@@ -123,7 +123,7 @@ mysqli_close($conn);
                                                 <label for="schooltype" class="col-sm-2 control-label">School
                                                     Type</label>
                                                 <div class="col-sm-10">
-                                                    <select name="schooltype" required>
+                                                    <select name="schooltype" class="form-control" required>
                                                         <option disabled selected hidden>Choose School Type</option>
                                                         <option value="government">Government</option>
                                                         <option value="private">Private</option>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])=="")
     {   
@@ -9,23 +9,31 @@ if(strlen($_SESSION['alogin'])=="")
     else{
 if(isset($_POST['submit']))
     {
-$password=md5($_POST['password']);
-$newpassword=md5($_POST['newpassword']);
-$username=$_SESSION['alogin'];
-    $sql ="SELECT Password FROM admin WHERE UserName=:username and Password=:password";
-$query= $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':password', $password, PDO::PARAM_STR);
-$query-> execute();
-$results = $query -> fetchAll(PDO::FETCH_OBJ);
-if($query -> rowCount() > 0)
-{
-$con="update admin set Password=:newpassword where UserName=:username";
-$chngpwd1 = $dbh->prepare($con);
-$chngpwd1-> bindParam(':username', $username, PDO::PARAM_STR);
-$chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
-$chngpwd1->execute();
-$msg="Your Password succesfully changed";
+ $password=md5($_POST['password']);
+ $newpassword=md5($_POST['newpassword']);
+ $username=$_SESSION['alogin'];
+     $sql ="SELECT Password FROM users WHERE username='$username' and Password='$password'";
+     $sel_current_pass = mysqli_query($conn, $sql);
+
+
+     if (mysqli_num_rows($sel_current_pass)){
+         $sql_update = "UPDATE users set password='$newpassword' where username='$username'";
+
+    $updating = mysqli_query($conn, $sql);
+     }
+// $query= $dbh -> prepare($sql);
+// $query-> bindParam(':username', $username, PDO::PARAM_STR);
+// $query-> bindParam(':password', $password, PDO::PARAM_STR);
+// $query-> execute();
+// $results = $query -> fetchAll(PDO::FETCH_OBJ);
+// if($query -> rowCount() > 0)
+// {
+// $con="update admin set Password=:newpassword where UserName=:username";
+// $chngpwd1 = $dbh->prepare($con);
+// $chngpwd1-> bindParam(':username', $username, PDO::PARAM_STR);
+// $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
+// $chngpwd1->execute();
+// $msg="Your Password succesfully changed";
 }
 else {
 $error="Your current password is wrong";    
@@ -38,7 +46,7 @@ $error="Your current password is wrong";
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin change password</title>
+        <title>Change password</title>
         <link rel="stylesheet" href="css/bootstrap.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
         <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
@@ -46,18 +54,20 @@ $error="Your current password is wrong";
         <link rel="stylesheet" href="css/prism/prism.css" media="screen" > <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
         <link rel="stylesheet" href="css/main.css" media="screen" >
         <script src="js/modernizr/modernizr.min.js"></script>
+
         <script type="text/javascript">
-function valid()
-{
-if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
-{
-alert("New Password and Confirm Password Field do not match  !!");
-document.chngpwd.confirmpassword.focus();
-return false;
-}
-return true;
-}
-</script>
+            function valid(){
+                if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
+                {
+                    alert("New Password and Confirm Password Field do not match  !!");
+                    document.chngpwd.confirmpassword.focus();
+                return false;
+                }
+            return true;
+            }
+        </script>
+
+
          <style>
         .errorWrap {
     padding: 10px;
