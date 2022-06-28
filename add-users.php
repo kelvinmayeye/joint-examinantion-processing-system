@@ -2,7 +2,7 @@
 session_start();
 
 include('includes/config.php');
-//error_reporting(0);
+error_reporting(0);
 if(isset($_POST['submit'])){
 $schoolid=$_POST['schoolid'];
 $f_name=$_POST['firstname']; 
@@ -185,16 +185,14 @@ else if($error){?>
                                                 </div>
                                             </div>
 
-                                    </div>
-
-
-
-
-                                    <div class="form-group">
+                                            <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" name="submit" class="btn btn-primary">Add</button>
                                         </div>
                                     </div>
+
+                                    </div>
+
                                     </form>
 
                                 </div>

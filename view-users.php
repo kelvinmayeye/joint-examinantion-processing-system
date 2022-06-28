@@ -103,6 +103,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                         <th>Sex</th>
                                                         <th>School Name</th>
                                                         <th>Role</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -112,6 +113,8 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School Name</th>
+                                                        <th>Role</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -128,6 +131,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                         <td><b><?php echo $row['sex'];?></b></td>
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>
+                                                        <td></td>
                                                     </tr>
                                                     <?php $NO=$NO+1;} ?>
 
