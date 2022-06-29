@@ -6,17 +6,20 @@ if(isset($_POST['login'])){
 $uname=$_POST['username'];
 $password=md5($_POST['password']);
 
-$sql_ad  ="SELECT username,password,role FROM users WHERE username='$uname' and password='$password'";
-
-
+$sql_ad  ="SELECT sno,username,password,role FROM users WHERE username='$uname' and password='$password'";
 $result_ad = mysqli_query($conn, $sql_ad);
 
         $row = mysqli_fetch_assoc($result_ad);  
         $count = mysqli_num_rows($result_ad);  
           
         if($count == 1){
-
             $role = $row['role'];
+            $teacher_no = $row['sno'];
+
+            $user_sub  ="SELECT subject_subcode FROM subject_has_users WHERE users_sno='$teacher_no'";
+            $result_user_sub = mysqli_query($conn, $user_sub);
+            $row2 = mysqli_fetch_assoc($result_user_sub); 
+
 
             switch ($role) {
             case "admin":
@@ -31,6 +34,7 @@ $result_ad = mysqli_query($conn, $sql_ad);
                 session_start();
                  $_SESSION['alogin']=$_POST['username'];
                  $_SESSION['role'] = $role;
+                 $_SESSION['has_subject'] = $row2['subject_subcode'];
                  //redirect to the next page
             header('Location: dashboard.php');
             break;
@@ -109,7 +113,7 @@ $result_ad = mysqli_query($conn, $sql_ad);
                                                     	<div class="form-group">
                                                     		<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                                                     		<div class="col-sm-10">
-                                                    			<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                                    			<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" readonly>
                                                     		</div>
                                                     	</div>
                                                     

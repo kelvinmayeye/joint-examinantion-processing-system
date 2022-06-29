@@ -120,17 +120,66 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row['sid'];?></td>
-                                                        <td><?php echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];?></td>
+                                                        <td><?php echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];?>
+                                                        </td>
                                                         <td><?php echo "";?></td>
-                                                        
-                                                        <td><i class="fa fa fa-edit mr-3"></i>
-                                                            <i class="fa fa fa-plus mr-3"></i></td>
+
+                                                        <td style="text-align: center;"><a href="" data-toggle="modal"
+                                                                data-target="#myModal<?php echo $row['sid']; ?>"> <i
+                                                                    class="fa fa fa-edit mr-3"></i></a>
+                                                            <i class="fa fa fa-plus mr-3"></i>
+                                                        </td>
                                                     </tr>
+
+
+                                                    <!---------------Modal---------------------->
+
+                                                    <div class="modal" id="myModal<?php echo $row['sid']; ?>">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title" id="modalLabel">Modal Title
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control">
+                                                                        <option disabled="" selected>Choose Subject</option>
+                                                                        <option>Math</option>
+                                                                        <option>English</option>
+                                                                        <option>History</option>
+                                                                    </select>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <input class="form-control" type="text" name="subject">
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!------------------------------------------->
+
+
                                                     <?php } ?>
 
 
                                                 </tbody>
                                             </table>
+
+
+
 
 
                                             <!-- /.col-md-12 -->

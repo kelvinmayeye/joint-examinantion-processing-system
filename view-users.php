@@ -3,7 +3,10 @@ session_start();
 //error_reporting(0);
 include('includes/config.php');
 //the fetch query
-$query = mysqli_query($conn,"SELECT * FROM users");
+$username = $_SESSION['alogin'];
+
+$query = mysqli_query($conn,"SELECT * FROM users WHERE username !='$username'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +104,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                        
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
-                                                        <th>School Name</th>
+                                                        <th>School Reg No</th>
                                                         <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -112,7 +115,7 @@ $query = mysqli_query($conn,"SELECT * FROM users");
                                                         <th>S/NO</th>
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
-                                                        <th>School Name</th>
+                                                        <th>School Reg No</th>
                                                         <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>

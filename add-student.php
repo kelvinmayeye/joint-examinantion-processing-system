@@ -5,6 +5,11 @@ include('includes/config.php');
 
 if(isset($_POST['submit'])){
 
+    foreach ($_POST as $key => $value) {
+        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+
+    }
+die();
 //$regno=$_POST['regno'];
 $school=$_POST['school'];
 $f_name=$_POST['firstname'];
@@ -13,10 +18,10 @@ $l_name=$_POST['lastname'];
 $gender=$_POST['sex']; 
 $tempregno = mt_rand(1, 999);
 
-
-
 $sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','$school','$f_name','$m_name','$l_name','$gender')";
 if(mysqli_query($conn,$sql)){
+    $last_id = mysqli_insert_id($conn);
+
     $msg = 'Added Successfully';
 }else{
     die("Stoooop");
@@ -105,17 +110,16 @@ if(mysqli_query($conn,$sql)){
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Registration
                                                     No</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-3">
                                                     <input type="text" name="" class="form-control" id="fullanme"
                                                         readonly value="system provide number automatically">
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">School</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-md-1">
+                                                    <label for="default" class="col-sm-2 control-label">School</label>
+                                                </div>
+                                                <div class="col-sm-6">
                                                     <select name="school" required="" class="form-control">
-                                                        <option selected disabled hidden>Choose school</option>
+                                                        <option selected disabled>Choose school</option>
                                                         <!-- selected from the database -->
                                                         <?php
                                                         $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");
@@ -125,7 +129,7 @@ if(mysqli_query($conn,$sql)){
                                                         <option value="<?php echo $row['regno'];?>">
                                                             <?php echo $row['schoolname']; ?></option>
                                                         <?php } ?>
-                                                    </select>
+                                                    </select> 
                                                 </div>
                                             </div>
 
@@ -157,9 +161,16 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">Gender</label>
                                                 <div class="col-sm-10">
                                                     <input type="radio" name="sex" value="M" required="required"
-                                                        checked="">Male <input type="radio" name="sex" value="F"
-                                                        required="required">Female
+                                                        checked=""> Male <input type="radio" name="sex" value="F"
+                                                        required="required"> Female
                                                 </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="checkbox" name="name1" value="name1">
+                                                <input type="checkbox" name="name2" value="name2">
+                                                <input type="checkbox" name="name3" value="name3">
+                                                <input type="checkbox" name="name4" value="name4">
                                             </div>
 
                                             <div class="form-group">

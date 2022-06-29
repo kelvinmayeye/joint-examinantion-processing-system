@@ -120,6 +120,9 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                     <?php
                                                 //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
+                                                    $regno = $row['sch_id'];
+                                                    $sch_name = mysqli_query($conn,"SELECT schoolname FROM school WHERE regno = '$regno'");
+                                                    $row2 = mysqli_fetch_array($sch_name);
                 
                                                 ?>
                                                     <tr>
@@ -128,8 +131,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                         <td><?php echo $row['m_name'];?></td>
                                                         <td><?php echo $row['l_name'];?></td>
                                                         <td><?php echo $row['sex'];?></td>
-
-                                                        <td></td>
+                                                        <td><?php echo $row2['schoolname']; ?></td>
                                                     </tr>
                                                     <?php } ?>
 

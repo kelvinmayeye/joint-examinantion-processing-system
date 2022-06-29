@@ -12,9 +12,19 @@ $sex=$_POST['optionsRadiosinline'];
 $username=$_POST['uname'];
 $password=md5($_POST['pass']);
 $role=$_POST['role'];
+$sub_code=$_POST['sub_code'];
 
 $sql="INSERT INTO  users(sch_id,f_name,m_name,l_name,sex,username,password,role) VALUES('$schoolid','$f_name','$m_name','$l_name','$sex','$username','$password','$role')";
 if(mysqli_query($conn,$sql)){
+
+    $last_id = mysqli_insert_id($conn);
+
+    $subj_has_user = "INSERT INTO subject_has_users(subject_subcode, users_sno) VALUES ('$sub_code','$last_id')";
+
+    if(mysqli_query($conn,$subj_has_user)){
+        
+    }
+
     $msg = 'User were added';
 }else{
 
@@ -174,13 +184,30 @@ else if($error){?>
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Role</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-4">
                                                     <select name="role" class="form-control">
                                                         <option selected disabled hidden>Choose user role</option>
                                                         <option value="admin">Admin</option>
                                                         <option value="head">Head of School</option>
                                                         <option value="academic">Academic</option>
                                                         <option value="teacher">Teacher</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                     <label for="default" class="col-sm-2 control-label">Assign Subject</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <select name="sub_code" required="" class="form-control">
+                                                        <option selected disabled>Select Subject</option>
+                                                        <!-- selected from the database -->
+                                                        <?php
+                                                        $getsch_id = mysqli_query($conn,"SELECT subcode,subname FROM subject");
+
+                                                        while ($row = mysqli_fetch_array($getsch_id)) {
+                                                        ?>
+                                                        <option value="<?php echo $row['subcode'];?>">
+                                                            <?php echo $row['subname']; ?></option>
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
