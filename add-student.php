@@ -4,27 +4,46 @@ session_start();
 include('includes/config.php');
 
 if(isset($_POST['submit'])){
-
-    foreach ($_POST as $key => $value) {
-        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
-
-    }
-die();
-//$regno=$_POST['regno'];
-$school=$_POST['school'];
+    $flag = 0;
 $f_name=$_POST['firstname'];
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
 $gender=$_POST['sex']; 
 $tempregno = mt_rand(1, 999);
 
-$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','$school','$f_name','$m_name','$l_name','$gender')";
+$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','".$_POST['school']."','$f_name','$m_name','$l_name','$gender')";
 if(mysqli_query($conn,$sql)){
-    $last_id = mysqli_insert_id($conn);
+    
+
+        foreach ($_POST as $key => $value) {
+        $flag++;
+        if ($flag>=6) {
+            //echo " Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+            $val = htmlspecialchars($key);
+
+            //die("$val");
+
+            $insert_subj_has_stu = "INSERT INTO subject_has_student(subject_subcode,student_sid) VALUES ('$val','$tempregno')";
+
+            $exe_sub_has_stu = mysqli_query($conn,$insert_subj_has_stu);
+
+            if($exe_sub_has_stu){
+                 
+            }else{
+                $_SESSION['added'] = "Added Successfully Student with Subjects";
+                header("location: add-student.php");
+                //echo "Error: " . $insert_subj_has_stu . "<br>" . mysqli_error($conn);
+                //die("fuck it");
+            }
+       
+
+            
+        }
+
+    }
 
     $msg = 'Added Successfully';
 }else{
-    die("Stoooop");
     $error = 'Ooops! Try Again';
 }
 
@@ -96,9 +115,11 @@ if(mysqli_query($conn,$sql)){
                                         </div>
                                     </div>
                                     <div class="panel-body">
-                                        <?php if(@$msg){?>
+                                        <?php if(@$msg || @$_SESSION['added']){?>
                                         <div class="alert alert-success left-icon-alert" role="alert">
-                                            <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+                                            <strong>Well done!</strong><?php echo htmlentities(@$msg);
+                                                echo htmlentities(@$_SESSION['added']);
+                                             ?>
                                         </div><?php } 
                                         else if(@$error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
@@ -167,10 +188,17 @@ if(mysqli_query($conn,$sql)){
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="checkbox" name="name1" value="name1">
-                                                <input type="checkbox" name="name2" value="name2">
-                                                <input type="checkbox" name="name3" value="name3">
-                                                <input type="checkbox" name="name4" value="name4">
+                                                <label for="default" class="col-sm-2 control-label">Subjects</label>
+                                                <div class="col-sm-10">
+                                                    <?php
+                                                $getsubj = mysqli_query($conn,"SELECT subcode,subname FROM subject");
+
+                                                        while ($row = mysqli_fetch_array($getsubj)) {
+                                                 ?>
+                                                <label class="checkbox-inline"><input type="checkbox" name="<?php echo $row['subcode']; ?>" value="<?php echo $row['subname']; ?>"><?php echo $row['subname']; ?></label>
+
+                                            <?php } ?>
+                                                </div>
                                             </div>
 
                                             <div class="form-group">
