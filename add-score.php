@@ -3,7 +3,11 @@ session_start();
 //error_reporting(0);
 include('includes/config.php');
 //the fetch query
-$query = mysqli_query($conn,"SELECT * FROM student");
+//$query = mysqli_query($conn,"SELECT * FROM student");
+
+$has_subject = $_SESSION['has_subject'];
+$query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_subcode = '$has_subject'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,18 +99,22 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>Reg number</th>
+                                                        <th>Reg Number</th>
                                                         <th>Fullname</th>
-                                                        <th>Subject</th>
+                                                        <th>Sex</th>
+                                                        <th>School</th>
+                                                        <th>Subject Score</th>
                                                         <th>Action</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Reg number</th>
+                                                        <th>Reg Number</th>
                                                         <th>Fullname</th>
-                                                        <th>Subject</th>
+                                                        <th>Sex</th>
+                                                        <th>School</th>
+                                                        <th>Subject Score</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </tfoot>
@@ -116,16 +124,25 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                     <?php
                                                 //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
-                
+                                                    $student_id=$row['student_sid'];
+
+                                                    $find_stu_id = mysqli_query($conn,"SELECT * FROM student WHERE sid='$student_id'");
+                                                        $row2 = mysqli_fetch_array($find_stu_id);
+                                                        $sch_id = $row2['sch_id'];
+
+                                                    $find_sch_name = mysqli_query($conn,"SELECT schoolname FROM school WHERE regno='$sch_id'");
+                                                        $row3 = mysqli_fetch_array($find_sch_name);
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $row['sid'];?></td>
-                                                        <td><?php echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];?>
+                                                        <td><?php echo $row['student_sid'];?></td>
+                                                        <td><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name'];?>
                                                         </td>
-                                                        <td><?php echo "";?></td>
+                                                        <td><?php echo $row2['sex'];?></td>
+                                                        <td><?php echo $row3['schoolname'];?></td>
+                                                        <td></td>
 
                                                         <td style="text-align: center;"><a href="" data-toggle="modal"
-                                                                data-target="#myModal<?php echo $row['sid']; ?>"> <i
+                                                                data-target="#myModal<?php echo $row['student_sid']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>
                                                             <i class="fa fa fa-plus mr-3"></i>
                                                         </td>
@@ -134,7 +151,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
 
                                                     <!---------------Modal---------------------->
 
-                                                    <div class="modal" id="myModal<?php echo $row['sid']; ?>">
+                                                    <div class="modal" id="myModal<?php echo $row['student_sid']; ?>">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">

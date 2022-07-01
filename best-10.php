@@ -1,7 +1,8 @@
 <?php
 session_start();
-//error_reporting(0);
+
 include('includes/config.php');
+error_reporting(0);
 //the fetch query
 $query = mysqli_query($conn,"SELECT * FROM student");
 ?>
@@ -99,7 +100,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School</th>
-                                                        <th>AGGT</th>
+                                                        <th>Point</th>
                                                         <th>Division</th>
 
                                                     </tr>
@@ -110,7 +111,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School</th>
-                                                        <th>AGGT</th>
+                                                        <th>Point</th>
                                                         <th>Division</th>
                                                     </tr>
                                                 </tfoot>
@@ -120,15 +121,32 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                     <?php
                                                 //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
-                
+                                                    $stu_id = $row['sid'];
+                                                    $select_res = mysqli_query($conn,"SELECT * FROM result_processing WHERE stu_id = '$stu_id'");
+                                                        $row2 = mysqli_fetch_array($select_res);
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row['sid'];?></td>
                                                         <td><?php echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];?></td>
                                                         <td><?php echo $row['sex'];?></td>
                                                         <td><?php echo $row['sch_id'];?></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><?php echo @$row2['div_point']; ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if ($row2['div_point'] >= 7 AND $row2['div_point'] <= 17) {
+                                                                echo "I";
+                                                            }else if ($row2['div_point'] >= 18 AND $row2['div_point'] <= 21) {
+                                                                echo "II";
+                                                            }else if ($row2['div_point'] >= 22 AND $row2['div_point'] <= 25) {
+                                                                echo "III";
+                                                            }else if ($row2['div_point'] >= 26 AND $row2['div_point'] <= 33) {
+                                                                echo "IV";
+                                                            }else if ($row2['div_point'] >= 34 AND $row2['div_point'] <= 55) {
+                                                                echo 0;
+                                                            }
+
+                                                            ?>
+                                                        </td>
                                                     </tr>
                                                     <?php } ?>
 

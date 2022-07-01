@@ -51,9 +51,8 @@ $result_ad = mysqli_query($conn, $sql_ad);
                  //redirect to the next page
             header('Location: dashboard.php');
             break;
-            break;
             default:
-                $msg= "ooops sorrry";
+                $msg= "sorry contact the admin";
             }
 
         }else{

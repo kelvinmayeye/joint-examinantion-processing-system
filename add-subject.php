@@ -103,7 +103,7 @@ if(mysqli_query($conn,$sql)){
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Subject Code</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="subcode" class="form-control" id="fullanme"
+                                                    <input type="number" name="subcode" class="form-control" id="fullanme"
                                                         required="required" placeholder="eg.123">
                                                 </div>
                                             </div>
@@ -112,15 +112,9 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">Subject Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="subname" class="form-control"
-                                                        id="fullanme" required="required" placeholder="eg.Mathematics">
+                                                        id="fullanme" required="required" placeholder="eg.Basic Mathematics">
                                                 </div>
                                             </div>
-
-
-                                    </div>
-
-
-
 
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">

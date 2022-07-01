@@ -98,7 +98,6 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                                                 <thead>
                                                     <tr>
                                                         <th>SNO</th>
-                                                       
                                                         <th>Subject Code</th>
                                                         <th>Subject Name</th>
                                                     </tr>
@@ -106,7 +105,7 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                                                 <tfoot>
                                                     <tr>
                         
-                                                        <th>S/NO</th>
+                                                        <th>SNO</th>
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                     </tr>
