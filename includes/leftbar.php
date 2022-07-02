@@ -97,7 +97,9 @@
                                             </ul>
                                         </li>
 
-
+                                        <?php if($_SESSION['role']==='admin'){ ?>
+                                        <li><a href="declare-results.php"><i class="fa fa fa-server"></i> <span>Declare Results</span></a></li>
+                                        <?php } ?>
 
                                         <li><a href="change-password.php"><i class="fa fa fa-server"></i> <span> Change Password</span></a></li>
                                            

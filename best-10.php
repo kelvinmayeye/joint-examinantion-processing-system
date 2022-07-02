@@ -4,7 +4,7 @@ session_start();
 include('includes/config.php');
 error_reporting(0);
 //the fetch query
-$query = mysqli_query($conn,"SELECT * FROM student");
+$query = mysqli_query($conn,"SELECT * FROM result_processing ORDER BY div_point ASC LIMIT 10");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,13 +86,13 @@ $query = mysqli_query($conn,"SELECT * FROM student");
 
                                     <div class="panel">
                                         <div class="panel-heading">
-                                            <div class="panel-title">
+                                            <!-- <div class="panel-title">
                                                 <h5>View Students Info</h5>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="panel-body p-20">
 
-                                            <table id="example" class="display table table-striped table-bordered"
+                                            <table class="display table table-striped table-bordered"
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
@@ -121,27 +121,31 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                     <?php
                                                 //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
-                                                    $stu_id = $row['sid'];
-                                                    $select_res = mysqli_query($conn,"SELECT * FROM result_processing WHERE stu_id = '$stu_id'");
+                                                    $stu_id = $row['stu_id'];
+                                                    $select_res = mysqli_query($conn,"SELECT * FROM student WHERE sid = '$stu_id'");
                                                         $row2 = mysqli_fetch_array($select_res);
+
+                                                            $regno = $row2['sch_id'];
+                                                        $find_school = mysqli_query($conn,"SELECT * FROM school WHERE regno = '$regno'");
+                                                        $row3 = mysqli_fetch_array($find_school);
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $row['sid'];?></td>
-                                                        <td><?php echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];?></td>
-                                                        <td><?php echo $row['sex'];?></td>
-                                                        <td><?php echo $row['sch_id'];?></td>
-                                                        <td><?php echo @$row2['div_point']; ?></td>
+                                                        <td><?php echo $row['stu_id'];?></td>
+                                                        <td><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name'];?></td>
+                                                        <td><?php echo $row2['sex'];?></td>
+                                                        <td><?php echo $row3['schoolname'];?></td>
+                                                        <td><?php echo $row['div_point']; ?></td>
                                                         <td>
                                                             <?php
-                                                            if ($row2['div_point'] >= 7 AND $row2['div_point'] <= 17) {
+                                                            if ($row['div_point'] >= 7 AND $row['div_point'] <= 17) {
                                                                 echo "I";
-                                                            }else if ($row2['div_point'] >= 18 AND $row2['div_point'] <= 21) {
+                                                            }else if ($row['div_point'] >= 18 AND $row['div_point'] <= 21) {
                                                                 echo "II";
-                                                            }else if ($row2['div_point'] >= 22 AND $row2['div_point'] <= 25) {
+                                                            }else if ($row['div_point'] >= 22 AND $row['div_point'] <= 25) {
                                                                 echo "III";
-                                                            }else if ($row2['div_point'] >= 26 AND $row2['div_point'] <= 33) {
+                                                            }else if ($row['div_point'] >= 26 AND $row['div_point'] <= 33) {
                                                                 echo "IV";
-                                                            }else if ($row2['div_point'] >= 34 AND $row2['div_point'] <= 55) {
+                                                            }else if ($row['div_point'] >= 34 AND $row['div_point'] <= 55) {
                                                                 echo 0;
                                                             }
 

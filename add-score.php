@@ -2,12 +2,27 @@
 session_start();
 //error_reporting(0);
 include('includes/config.php');
-//the fetch query
-//$query = mysqli_query($conn,"SELECT * FROM student");
+$role = $_SESSION['role'];
 
-$has_subject = $_SESSION['has_subject'];
-$query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_subcode = '$has_subject'");
+$has_subject = $_SESSION['has_subject'];//get user assign subject from login_page
+if(!empty($has_subject)){
+$query = mysqli_query($conn,"SELECT DISTINCT * FROM subject_has_student WHERE subject_subcode = '$has_subject'");
+}else{
+ $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_subcode");   
+}
 
+if(isset($_POST['add_score'])){
+    $score = $_POST['subj_score'];
+    $stud_id = $_POST['stud_id'];
+
+    $update_score = mysqli_query($conn,"UPDATE subject_has_student SET score='$score' WHERE subject_subcode='$has_subject' AND student_sid='$stud_id'");
+    if($update_score){
+        header("location: add-score.php?msg=score added");
+    }else{
+        header("location: add-score.php?error=Sorry please Try Again");
+    }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +92,19 @@ $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_sub
                             </div>
 
                         </div>
+
+                                        <?php 
+                                        $msg = @$_GET['msg'];
+                                        $error = @$_GET['error'];
+                                        if(@$msg){?>
+                                        <div class="alert alert-success left-icon-alert" role="alert">
+                                            <strong>Successfull! </strong><?php echo htmlentities($msg); ?>
+                                        </div><?php } 
+                                        else if(@$error){?>
+                                        <div class="alert alert-danger left-icon-alert" role="alert">
+                                            <strong>Failed! </strong> <?php echo htmlentities($error); ?>
+                                        </div>
+                                        <?php } ?>
                         <!-- /.row -->
                     </div>
                     <!-- /.container-fluid -->
@@ -90,7 +118,16 @@ $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_sub
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <div class="panel-title">
-                                                <h5>Manage Students Scores</h5>
+                                                <?php
+                                                if(!empty($has_subject)){
+                                                    $find_subj_name = mysqli_query($conn,"SELECT * FROM subject WHERE subcode='$has_subject'");
+                                                    $subname = mysqli_fetch_array($find_subj_name);
+                                                    $sub_nm = $subname['subname'];
+                                                    echo "<h5>Students Taking ".$sub_nm."</h5>";
+                                                }else{
+                                                    echo "<h5>Manage Students Scores</h5>";
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                         <div class="panel-body p-20">
@@ -139,7 +176,7 @@ $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_sub
                                                         </td>
                                                         <td><?php echo $row2['sex'];?></td>
                                                         <td><?php echo $row3['schoolname'];?></td>
-                                                        <td></td>
+                                                        <td><?php echo $row['score']; ?></td>
 
                                                         <td style="text-align: center;"><a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['student_sid']; ?>"> <i
@@ -150,6 +187,7 @@ $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_sub
 
 
                                                     <!---------------Modal---------------------->
+
 
                                                     <div class="modal" id="myModal<?php echo $row['student_sid']; ?>">
                                                         <div class="modal-dialog" role="document">
@@ -163,25 +201,25 @@ $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_sub
                                                                     </h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="row">
+                                                                    <form action="" method="POST">
+                                                                        <div class="row">
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control">
-                                                                        <option disabled="" selected>Choose Subject</option>
-                                                                        <option>Math</option>
-                                                                        <option>English</option>
-                                                                        <option>History</option>
-                                                                    </select>
+                                                                            <input type="radio" checked  name="stud_id" value="<?php echo $row['student_sid']; ?>" hidden="true" >
+                                                                            <label><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name']; ?></label>
                                                                         </div>
                                                                         <div class="col-md-6">
-                                                                            <input class="form-control" type="text" name="subject">
+                                                                            <input class="form-control" type="text" name="subj_score"
+                                                                            placeholder="Student Score" maxlength="3" >
                                                                         </div>
                                                                         
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
+                                                                    <input type="submit" name="add_score" class="btn btn-primary" value="Add Score">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</button>
                                                                 </div>
+                                                                    </form>
                                                             </div>
                                                         </div>
                                                     </div>

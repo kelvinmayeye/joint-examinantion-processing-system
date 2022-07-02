@@ -2,8 +2,7 @@
 session_start();
 //error_reporting(0);
 include('includes/config.php');
-//the fetch query
-$query = mysqli_query($conn,"SELECT * FROM student");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,6 +79,35 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                     <section class="section">
                         <div class="container-fluid">
 
+                            <h1 align="center">JOINT EXAMINATION RESULTS</h1>
+                            <h3 align="center">Available centers</h3>
+
+                            <div class="content justify-center text-center">
+                                <form action="" method="POST">
+                                    <select name="school" required="true" class="" required="">
+                                    <option selected disabled hidden>Choose school</option>
+                                     <!-- selected from the database -->
+                                      <?php
+                                      $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");
+                                      while ($row = mysqli_fetch_array($getsch_id)) {
+                                      ?>
+                                    <option value="<?php echo $row['regno'];?>">
+                                      <?php echo $row['schoolname']; ?></option>
+                                     <?php } ?>
+                                </select> 
+
+                                <input type="submit" name="search" value="show result" class="btn btn-primary">
+                                </form>
+                            </div>
+
+                            <?php if(isset($_POST['search'])){ 
+                                @$school = $_POST['school'];
+                                
+                                //the fetch query
+                                $query = mysqli_query($conn,"SELECT * FROM student WHERE sch_id='$school'");
+
+                                ?>
+
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -91,7 +119,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                         </div>
                                         <div class="panel-body p-20">
 
-                                            <table id="example" class="display table table-striped table-bordered"
+                                            <table class="display table table-striped table-bordered"
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
@@ -119,14 +147,32 @@ $query = mysqli_query($conn,"SELECT * FROM student");
                                                     <?php
                                                 //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
+                                                    $stu_id = $row['sid'];
+                                                    $find_point = mysqli_query($conn,"SELECT * FROM result_processing WHERE stu_id ='$stu_id'");
+                                                    $row2 = mysqli_fetch_array($find_point);
                 
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row['sid'];?></td>
                                                          <td><?php echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];?></td>
                                                          <td><?php echo $row['sex'];?></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><?php echo $row2['div_point']; ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if ($row2['div_point'] >= 7 AND $row2['div_point'] <= 17) {
+                                                                echo "I";
+                                                            }else if ($row2['div_point'] >= 18 AND $row2['div_point'] <= 21) {
+                                                                echo "II";
+                                                            }else if ($row2['div_point'] >= 22 AND $row2['div_point'] <= 25) {
+                                                                echo "III";
+                                                            }else if ($row2['div_point'] >= 26 AND $row2['div_point'] <= 33) {
+                                                                echo "IV";
+                                                            }else if ($row2['div_point'] >= 34 AND $row2['div_point'] <= 55) {
+                                                                echo 0;
+                                                            }
+
+                                                            ?>
+                                                        </td>
                                                          <td></td>
                                                         
                                                     </tr>
@@ -146,6 +192,7 @@ $query = mysqli_query($conn,"SELECT * FROM student");
 
                             </div>
                             <!-- /.col-md-12 -->
+                            <?php } ?>
                         </div>
                 </div>
                 <!-- /.panel -->

@@ -105,8 +105,8 @@ mysqli_close($conn);
                                                 <label for="default" class="col-sm-2 control-label">Registration
                                                     Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="regno" class="form-control" id="fullanme"
-                                                        required="required" autocomplete="off">
+                                                    <input type="text" name="regno" maxlength="5" class="form-control" id="fullanme"
+                                                        required="required" autofocus="" pattern="[0-9]+" title="must be number form 0-9 only 5 character">
                                                 </div>
                                             </div>
 

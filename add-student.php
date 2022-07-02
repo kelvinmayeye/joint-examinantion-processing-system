@@ -9,21 +9,24 @@ $f_name=$_POST['firstname'];
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
 $gender=$_POST['sex']; 
+$student_id = $_POST['student_id'];
 $tempregno = mt_rand(1, 999);
 
-$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$tempregno','".$_POST['school']."','$f_name','$m_name','$l_name','$gender')";
+$student_id = $_POST['school'].$student_id;
+
+echo $student_id;
+
+
+$sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$student_id','".$_POST['school']."','$f_name','$m_name','$l_name','$gender')";
 if(mysqli_query($conn,$sql)){
     
 
         foreach ($_POST as $key => $value) {
         $flag++;
         if ($flag>=6) {
-            //echo " Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
             $val = htmlspecialchars($key);
 
-            //die("$val");
-
-            $insert_subj_has_stu = "INSERT INTO subject_has_student(subject_subcode,student_sid) VALUES ('$val','$tempregno')";
+            $insert_subj_has_stu = "INSERT INTO subject_has_student(subject_subcode,student_sid) VALUES ('$val','$student_id')";
 
             $exe_sub_has_stu = mysqli_query($conn,$insert_subj_has_stu);
 
@@ -32,8 +35,6 @@ if(mysqli_query($conn,$sql)){
             }else{
                 $_SESSION['added'] = "Added Successfully Student with Subjects";
                 header("location: add-student.php");
-                //echo "Error: " . $insert_subj_has_stu . "<br>" . mysqli_error($conn);
-                //die("fuck it");
             }
        
 
@@ -127,13 +128,12 @@ if(mysqli_query($conn,$sql)){
                                         </div>
                                         <?php } ?>
                                         <form  action="" class="form-horizontal" method="post">
-                                            <!-- Should provide Registration number to students -->
+                                            <!-- system concatenate regno with school reg n -->
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Registration
                                                     No</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" name="" class="form-control" id="fullanme"
-                                                        readonly value="system provide number automatically">
+                                                    <input type="text" name="student_id" class="form-control" id="fullanme">
                                                 </div>
                                                 <div class="col-md-1">
                                                     <label for="default" class="col-sm-2 control-label">School</label>

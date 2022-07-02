@@ -2,8 +2,7 @@
 session_start();
 //error_reporting(0);
 include('includes/config.php');
-//the fetch query
-$query = mysqli_query($conn,"SELECT * FROM school");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +67,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                 <ul class="breadcrumb">
                                     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
                                     <li> School</li>
-                                    <li class="active">View School</li>
+                                    <li class="active">School Performance</li>
                                 </ul>
                             </div>
 
@@ -80,6 +79,33 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                     <section class="section">
                         <div class="container-fluid">
 
+                            <h1 align="center">JOINT EXAMINATION RESULTS</h1>
+                            <h3 align="center">Available centers</h3>
+
+                            <div class="content justify-center text-center">
+                                <form action="" method="POST">
+                                    <select name="school" required="" class="" required="">
+                                    <option selected disabled hidden>Choose school</option>
+                                     <!-- selected from the database -->
+                                      <?php
+                                      $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");
+                                      while ($row = mysqli_fetch_array($getsch_id)) {
+                                      ?>
+                                    <option value="<?php echo $row['regno'];?>">
+                                      <?php echo $row['schoolname']; ?></option>
+                                     <?php } ?>
+                                </select> 
+
+                                <input type="submit" name="search" value="show result" class="btn btn-primary">
+                                </form>
+                            </div>
+
+
+                            <?php if(isset($_POST['search'])){ 
+
+                                //the fetch query
+                                $query = mysqli_query($conn,"SELECT * FROM school");
+                                ?>
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -91,7 +117,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                         </div>
                                         <div class="panel-body p-20">
 
-                                            <table id="example" class="display table table-striped table-bordered"
+                                            <table class="display table table-striped table-bordered"
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
@@ -140,6 +166,7 @@ $query = mysqli_query($conn,"SELECT * FROM school");
 
                             </div>
                             <!-- /.col-md-12 -->
+                        <?php } ?>
                         </div>
                 </div>
                 <!-- /.panel -->
