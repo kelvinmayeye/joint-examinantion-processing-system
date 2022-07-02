@@ -26,6 +26,7 @@ $result_ad = mysqli_query($conn, $sql_ad);
                  session_start();
                  $_SESSION['alogin']=$_POST['username'];
                  $_SESSION['role'] = $role;
+                 $_SESSION['user_id'] = $row['sno'];
                  //redirect to the next page
             header('Location: dashboard.php');
 
@@ -35,6 +36,7 @@ $result_ad = mysqli_query($conn, $sql_ad);
                  $_SESSION['alogin']=$_POST['username'];
                  $_SESSION['role'] = $role;
                  $_SESSION['has_subject'] = $row2['subject_subcode'];
+                 $_SESSION['user_id'] = $row['sno'];
                  //redirect to the next page
             header('Location: dashboard.php');
             break;
@@ -42,12 +44,16 @@ $result_ad = mysqli_query($conn, $sql_ad);
                 session_start();
                  $_SESSION['alogin']=$_POST['username'];
                  $_SESSION['role'] = $role;
+                 $_SESSION['user_id'] = $row['sno'];
+
                  //redirect to the next page
             header('Location: dashboard.php');
             case "academic":
                 session_start();
                  $_SESSION['alogin']=$_POST['username'];
                  $_SESSION['role'] = $role;
+                 $_SESSION['user_id'] = $row['sno'];
+                 
                  //redirect to the next page
             header('Location: dashboard.php');
             break;
