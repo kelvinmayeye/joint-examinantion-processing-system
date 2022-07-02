@@ -140,7 +140,7 @@ if(mysqli_query($conn,$sql)){
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <select name="school" required="" class="form-control">
-                                                        <option selected disabled>Choose school</option>
+                                                        <option selected disabled hidden>Choose school</option>
                                                         <!-- selected from the database -->
                                                         <?php
                                                         $getsch_id = mysqli_query($conn,"SELECT regno,schoolname      FROM school");

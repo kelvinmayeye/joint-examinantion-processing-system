@@ -125,9 +125,9 @@ mysqli_close($conn);
                                                 <div class="col-sm-10">
                                                     <select name="schooltype" class="form-control" required>
                                                         <option disabled selected hidden>Choose School Type</option>
-                                                        <option value="government">Government</option>
-                                                        <option value="private">Private</option>
-                                                        <option value="cooperative">Cooperative</option>
+                                                        <option value="Government">Government</option>
+                                                        <option value="Private">Private</option>
+                                                        <option value="Cooperative">Cooperative</option>
                                                     </select>
                                                 </div>
                                             </div>
