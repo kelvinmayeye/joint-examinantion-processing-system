@@ -22,7 +22,7 @@
                                     </li> -->
                                     <?php if($_SESSION['role']==='admin'){ ?>
                                     <li class="has-children">
-                                        <a href="#"><i class="fa fa-file-text"></i> <span>School</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="#"><i class="fa fa-home"></i> <span>School</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-school.php"><i class="fa fa-bars"></i> <span>Add School</span></a></li>
                                             <li><a href="view-school.php"><i class="fa fa fa-server"></i> <span>view school</span></a></li>
@@ -32,7 +32,7 @@
                                 <?php } ?>
                                     <?php if($_SESSION['role']==='admin'){ ?>
                                     <li class="has-children">
-                                        <a href="#"><i class="fa fa-file-text"></i> <span>Users</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="#"><i class="fa fa-user"></i> <span>Users</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-users.php"><i class="fa fa-bars"></i> <span>Add User</span></a></li>
                                             <li><a href="view-users.php"><i class="fa fa fa-server"></i> <span>View User</span></a></li>
@@ -54,7 +54,7 @@
 
                                     <?php if($_SESSION['role']==='admin' || $_SESSION['role']==='head'){ ?>
                                     <li class="has-children">
-                                        <a href="#"><i class="fa fa-users"></i> <span>Subject</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Subject</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-subject.php"><i class="fa fa-bars"></i> <span>Add Subject</span></a></li>
                                             <li><a href="view-subject.php"><i class="fa fa fa-server"></i> <span>View Subject</span></a></li>
@@ -65,7 +65,7 @@
 
                                     <?php if($_SESSION['role']==='teacher'){ ?>
                                       <li class="has-children">
-                                        <a href="#"><i class="fa fa-users"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="#"><i class="fa fa-check-square-o"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-score.php"><i class="fa fa-bars"></i> <span>Manage Score</span></a></li>
                                         </ul>
@@ -74,7 +74,7 @@
 
                                     <?php if($_SESSION['role']==='admin'){ ?>
                                       <li class="has-children">
-                                        <a href="#"><i class="fa fa-users"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="#"><i class="fa fa-check-square-o"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-score-admin.php"><i class="fa fa-bars"></i> <span>Manage Score</span></a></li>
                                         </ul>
@@ -84,7 +84,7 @@
 
 
                                         <li class="has-children">
-                                        <a href="#"><i class="fa fa-info-circle"></i> <span>Result Analysis</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href="#"><i class="fa fa-line-chart"></i> <span>Result Analysis</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="best-10.php"><i class="fa fa-bars"></i> <span>Overall Best-ten</span></a></li>
                                             <!-- <li><a href="manage-results.php"><i class="fa fa fa-server"></i> <span>Overall ten-looser</span></a></li> -->
@@ -96,10 +96,10 @@
                                         </li>
 
                                         <?php if($_SESSION['role']==='admin'){ ?>
-                                        <li><a href="declare-results.php"><i class="fa fa fa-server"></i> <span>Declare Results</span></a></li>
+                                        <li><a href="declare-results.php"><i class="fa fa-balance-scale"></i> <span>Declare Results</span></a></li>
                                         <?php } ?>
 
-                                        <li><a href="change-password.php"><i class="fa fa fa-server"></i> <span> Change Password</span></a></li>
+                                        <li><a href="change-password.php"><i class="fa fa-adjust"></i> <span> Change Password</span></a></li>
                                            
                             
                             </div>
