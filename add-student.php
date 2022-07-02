@@ -133,7 +133,7 @@ if(mysqli_query($conn,$sql)){
                                                 <label for="default" class="col-sm-2 control-label">Registration
                                                     No</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" name="student_id" class="form-control" id="fullanme">
+                                                    <input type="text" maxlength="4" name="student_id" class="form-control" id="fullanme" pattern="[0-9]+">
                                                 </div>
                                                 <div class="col-md-1">
                                                     <label for="default" class="col-sm-2 control-label">School</label>

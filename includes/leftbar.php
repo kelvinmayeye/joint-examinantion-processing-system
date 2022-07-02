@@ -63,17 +63,6 @@
                                     </li>
                                 <?php } ?>
 
-                                    <?php if($_SESSION['role']==='admin'){ ?>
-                                    <li class="has-children">
-                                        <a href=""><i class="fa fa-users"></i> <span>Grading</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="add-grade.php"><i class="fa fa-bars"></i> <span>Add Grade Criteria</span></a></li>
-                                            <li><a href="add-division.php"><i class="fa fa fa-server"></i> <span>Add Division Criteria</span></a></li>
-                                           
-                                        </ul>
-                                    </li>
-                                    <?php } ?>
-
                                     <?php if($_SESSION['role']==='teacher' || $_SESSION['role']==='admin'){ ?>
                                       <li class="has-children">
                                         <a href="#"><i class="fa fa-users"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>

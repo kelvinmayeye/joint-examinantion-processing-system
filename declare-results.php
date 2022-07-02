@@ -2,6 +2,15 @@
 session_start();
 error_reporting(0);
     include('includes/config.php');
+    if (isset($_POST['add_result'])) {
+        header("location: process-results.php");
+    }elseif (isset($_POST['del_result'])) {
+        $delete_results = mysqli_query($conn,"DELETE FROM result_processing");
+        if ($delete_results) {
+            header("location: declare-results.php?success=Successfully Deleted results");
+        }
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +19,7 @@ error_reporting(0);
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>JOINT EXAMINATION PROCESSING RESULT SYSTEM | Dashboard</title>
+        <title>JOINT EXAMINATION PROCESSING RESULTS SYSTEM | Declare Result</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
         <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
@@ -46,7 +55,30 @@ error_reporting(0);
 
                         <section class="section">
                             <div class="container-fluid">
+
+                                <img src="images/danger2.png" height="80px" width="80px"><br>
+
+                                <?php 
+                                @$success = $_GET['success'];
+                                if (!empty($success)) {
+                                 ?>
+                                 <div class="alert alert-success" role="alert"><?php echo $success; ?></div>
+                                <?php } ?>
+
                                 
+                                <div class="alert alert-danger" role="alert"><b>Attention</b><br>Once the result are processed cannot be Alterd(edited).Result can only be added and deleted <b>only</b></div>
+
+                                <form action="" method="POST">
+                                    <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="submit" name="add_result" class="btn btn-success btn-lg btn-block">Declare Results</button>
+                                    </div>
+
+                                    <div class="col-sm-12" style="margin-top: 30px;">
+                                        <button type="submit" name="del_result" class="btn btn-danger btn-lg btn-block">Delete Results</button>
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                             <!-- /.container-fluid -->
                         </section>

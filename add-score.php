@@ -4,7 +4,7 @@ session_start();
 include('includes/config.php');
 $role = $_SESSION['role'];
 
-$has_subject = $_SESSION['has_subject'];//get user assign subject from login_page
+@$has_subject = $_SESSION['has_subject'];//get user assign subject from login_page
 if(!empty($has_subject)){
 $query = mysqli_query($conn,"SELECT DISTINCT * FROM subject_has_student WHERE subject_subcode = '$has_subject'");
 }else{

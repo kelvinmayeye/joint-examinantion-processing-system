@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 29, 2022 at 11:44 AM
+-- Generation Time: Jul 02, 2022 at 04:46 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -39,6 +39,31 @@ CREATE TABLE `grade` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `result_processing`
+--
+
+CREATE TABLE `result_processing` (
+  `stu_id` varchar(20) NOT NULL,
+  `sum` float NOT NULL,
+  `avg` float NOT NULL,
+  `div_point` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `result_processing`
+--
+
+INSERT INTO `result_processing` (`stu_id`, `sum`, `avg`, `div_point`) VALUES
+('23001001', 579, 57.9, 11),
+('23001005', 692, 69.2, 10),
+('23002002', 450, 45, 20),
+('23002003', 478, 47.8, 19),
+('23002004', 652, 65.2, 10),
+('23002006', 510, 51, 15);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `school`
 --
 
@@ -53,7 +78,9 @@ CREATE TABLE `school` (
 --
 
 INSERT INTO `school` (`regno`, `schoolname`, `schooltype`) VALUES
-('23001', 'SHULE YA SEKONDARI MAGOZA', 'government');
+('12003', 'ST MARYS SECONDARY SCHOOL', 'Private'),
+('23001', 'SHULE YA SEKONDARI MAGOZA', 'government'),
+('23002', 'SHULE YA SECONDARY BULOMBOLA', 'government');
 
 -- --------------------------------------------------------
 
@@ -62,7 +89,7 @@ INSERT INTO `school` (`regno`, `schoolname`, `schooltype`) VALUES
 --
 
 CREATE TABLE `student` (
-  `sid` int(5) NOT NULL,
+  `sid` varchar(20) NOT NULL,
   `sch_id` varchar(100) NOT NULL,
   `f_name` varchar(100) NOT NULL,
   `m_name` varchar(100) DEFAULT NULL,
@@ -75,8 +102,13 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`sid`, `sch_id`, `f_name`, `m_name`, `l_name`, `sex`) VALUES
-(125, '23001', 'JULIANA', 'MICHAEL', 'MARCO', 'F'),
-(787, '23001', 'yeee', 'wwee', 'wwwe', 'M');
+('120030201', '12003', 'NGOILA', 'SULEIMAN', 'MANYWA', 'M'),
+('23001001', '23001', 'ALLY', 'RAMADHANI', 'OMARY', 'M'),
+('23001005', '23001', 'GEORGE', 'DONALD', 'BUSH', 'M'),
+('23002002', '23002', 'ZARI', 'JUMA', 'MOHAMMED', 'F'),
+('23002003', '23002', 'MICHAEL', 'JACKSON', 'KAHALWE', 'M'),
+('23002004', '23002', 'GOODLUCK', 'KYANDO ', 'BLESSING', 'M'),
+('23002006', '23002', 'LILIAN', 'TEMBA', 'KIMAMBO', 'F');
 
 -- --------------------------------------------------------
 
@@ -94,8 +126,17 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subcode`, `subname`) VALUES
+(25, 'FOOD AND NUTRITION'),
 (101, 'Mathematics'),
-(112, 'Hist');
+(103, 'English'),
+(104, 'Geography'),
+(105, 'CHEMISTRY'),
+(106, 'FINE ART'),
+(107, 'PHYSICAL EDUCATION'),
+(108, 'LITERATURE'),
+(109, 'FRENCH'),
+(110, 'COMPUTER'),
+(112, 'History');
 
 -- --------------------------------------------------------
 
@@ -105,9 +146,85 @@ INSERT INTO `subject` (`subcode`, `subname`) VALUES
 
 CREATE TABLE `subject_has_student` (
   `subject_subcode` int(100) NOT NULL,
-  `student_sid` int(5) NOT NULL,
-  `score` int(3) NOT NULL
+  `student_sid` varchar(20) NOT NULL,
+  `score` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subject_has_student`
+--
+
+INSERT INTO `subject_has_student` (`subject_subcode`, `student_sid`, `score`) VALUES
+(101, '120030201', NULL),
+(101, '23001001', 78),
+(101, '23001005', 67),
+(101, '23002002', 56),
+(101, '23002003', 78),
+(101, '23002004', 90),
+(101, '23002006', 43),
+(103, '120030201', NULL),
+(103, '23001001', 34),
+(103, '23001005', 45),
+(103, '23002002', 56),
+(103, '23002003', 67),
+(103, '23002004', 78),
+(103, '23002006', 77),
+(104, '120030201', NULL),
+(104, '23001001', 56),
+(104, '23001005', 89),
+(104, '23002002', 70),
+(104, '23002003', 34),
+(104, '23002004', 29),
+(104, '23002006', 48),
+(105, '120030201', NULL),
+(105, '23001001', 50),
+(105, '23001005', 78),
+(105, '23002002', 56),
+(105, '23002003', 52),
+(105, '23002004', 90),
+(105, '23002006', 65),
+(106, '120030201', NULL),
+(106, '23001001', 93),
+(106, '23001005', 74),
+(106, '23002002', 39),
+(106, '23002003', 67),
+(106, '23002004', 69),
+(106, '23002006', 75),
+(107, '120030201', NULL),
+(107, '23001001', 89),
+(107, '23001005', 87),
+(107, '23002002', 43),
+(107, '23002003', 34),
+(107, '23002004', 78),
+(107, '23002006', 24),
+(108, '120030201', NULL),
+(108, '23001001', 0),
+(108, '23001005', 34),
+(108, '23002002', 9),
+(108, '23002003', 45),
+(108, '23002004', 45),
+(108, '23002006', 32),
+(109, '120030201', 78),
+(109, '23001001', 78),
+(109, '23001005', 89),
+(109, '23002002', 12),
+(109, '23002003', 34),
+(109, '23002004', 90),
+(109, '23002006', 67),
+(110, '120030201', NULL),
+(110, '23001001', 23),
+(110, '23001005', 56),
+(110, '23002002', 77),
+(110, '23002003', 44),
+(110, '23002004', 38),
+(110, '23002006', 67),
+(112, '120030201', NULL),
+(112, '23001001', 78),
+(112, '23001005', 73),
+(112, '23002002', 32),
+(112, '23002003', 23),
+(112, '23002004', 45),
+(112, '23002006', 12);
 
 -- --------------------------------------------------------
 
@@ -125,8 +242,8 @@ CREATE TABLE `subject_has_users` (
 --
 
 INSERT INTO `subject_has_users` (`subject_subcode`, `users_sno`) VALUES
-(101, 12),
-(112, 13);
+(101, 25),
+(109, 24);
 
 -- --------------------------------------------------------
 
@@ -152,11 +269,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`sno`, `sch_id`, `f_name`, `m_name`, `l_name`, `sex`, `username`, `password`, `role`) VALUES
 (6, NULL, 'John', 'M', 'Nathanaeli', 'M', 'sir', '202cb962ac59075b964b07152d234b70', 'admin'),
-(7, '23001', 'LAMECK', 'MIKA', 'MWAGONGO', 'M', 'LAMECK', '202cb962ac59075b964b07152d234b70', 'teacher'),
-(8, '23001', 'FRANK', 'ELIAS', 'JUSTINE', 'M', 'FRANK', '202cb962ac59075b964b07152d234b70', 'academic'),
-(9, '23001', 'SHABANI', 'ALLY', 'JUMA', 'M', 'SHABANI', '202cb962ac59075b964b07152d234b70', 'head'),
-(12, '23001', 'JACKSON', 'PILI', 'MWANGI', 'M', 'jack', '202cb962ac59075b964b07152d234b70', 'teacher'),
-(13, '23001', 'FATUMA', 'SHABANI', 'RAMADHANI', 'F', 'fatuma', '202cb962ac59075b964b07152d234b70', 'teacher');
+(24, '23001', 'OTTO', 'MICHAEL', 'DUNGA', 'M', 'OTTO', '202cb962ac59075b964b07152d234b70', 'teacher'),
+(25, '12003', 'JOHARIA', 'SEIF', 'KHAMISI', 'F', 'JOHARIA', '202cb962ac59075b964b07152d234b70', 'head');
 
 --
 -- Indexes for dumped tables
@@ -167,6 +281,12 @@ INSERT INTO `users` (`sno`, `sch_id`, `f_name`, `m_name`, `l_name`, `sex`, `user
 --
 ALTER TABLE `grade`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `result_processing`
+--
+ALTER TABLE `result_processing`
+  ADD PRIMARY KEY (`stu_id`);
 
 --
 -- Indexes for table `school`
@@ -217,11 +337,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sno` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sno` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `result_processing`
+--
+ALTER TABLE `result_processing`
+  ADD CONSTRAINT `result_processing_ibfk_1` FOREIGN KEY (`stu_id`) REFERENCES `student` (`sid`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`

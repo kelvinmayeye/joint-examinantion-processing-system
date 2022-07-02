@@ -89,11 +89,11 @@ if(mysqli_query($conn,$sql)){
                                         </div>
                                     </div>
                                     <div class="panel-body">
-                                        <?php if($msg){?>
+                                        <?php if(@$msg){?>
                                         <div class="alert alert-success left-icon-alert" role="alert">
                                             <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
-                                else if($error){?>
+                                else if(@$error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
                                             <strong>Failed!</strong> <?php echo htmlentities($error); ?>
                                         </div>

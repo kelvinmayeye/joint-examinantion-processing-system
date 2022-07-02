@@ -61,4 +61,7 @@ $add_div = mysqli_query($conn,"UPDATE result_processing SET div_point = '$divisi
 }
 
 
+        header("location: declare-results.php?success=successfull added results");
+
+
 ?>
