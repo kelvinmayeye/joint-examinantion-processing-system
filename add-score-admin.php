@@ -4,12 +4,8 @@ session_start();
 include('includes/config.php');
 $role = $_SESSION['role'];
 
-@$has_subject = $_SESSION['has_subject'];//get user assign subject from login_page
-if(!empty($has_subject)){
-$query = mysqli_query($conn,"SELECT DISTINCT * FROM subject_has_student WHERE subject_subcode = '$has_subject'");
-}else{
- $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_subcode");   
-}
+
+ $query = mysqli_query($conn,"SELECT * FROM subject_has_student");   
 
 if(isset($_POST['add_score'])){
     $score = $_POST['subj_score'];
@@ -92,7 +88,6 @@ if(isset($_POST['add_score'])){
                             </div>
 
                         </div>
-
                                         <?php 
                                         $msg = @$_GET['msg'];
                                         $error = @$_GET['error'];
@@ -118,16 +113,7 @@ if(isset($_POST['add_score'])){
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <div class="panel-title">
-                                                <?php
-                                                if(!empty($has_subject)){
-                                                    $find_subj_name = mysqli_query($conn,"SELECT * FROM subject WHERE subcode='$has_subject'");
-                                                    $subname = mysqli_fetch_array($find_subj_name);
-                                                    $sub_nm = $subname['subname'];
-                                                    echo "<h5>Students Taking ".$sub_nm."</h5>";
-                                                }else{
-                                                    echo "<h5>Manage Students Scores</h5>";
-                                                }
-                                                ?>
+                                                <h5>Manage Students Scores</h5>
                                             </div>
                                         </div>
                                         <div class="panel-body p-20">
@@ -140,6 +126,7 @@ if(isset($_POST['add_score'])){
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School</th>
+                                                        <th>Subject</th>
                                                         <th>Subject Score</th>
                                                         <th>Action</th>
 
@@ -151,6 +138,7 @@ if(isset($_POST['add_score'])){
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School</th>
+                                                        <th>subject</th>
                                                         <th>Subject Score</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -162,6 +150,10 @@ if(isset($_POST['add_score'])){
                                                 //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
                                                     $student_id=$row['student_sid'];
+                                                    $subject_subcode = $row['subject_subcode'];
+
+                                                 $find_subj_name = mysqli_query($conn,"SELECT * FROM subject WHERE subcode='$subject_subcode'");
+                                                     $subname = mysqli_fetch_array($find_subj_name);
 
                                                     $find_stu_id = mysqli_query($conn,"SELECT * FROM student WHERE sid='$student_id'");
                                                         $row2 = mysqli_fetch_array($find_stu_id);
@@ -176,12 +168,12 @@ if(isset($_POST['add_score'])){
                                                         </td>
                                                         <td><?php echo $row2['sex'];?></td>
                                                         <td><?php echo $row3['schoolname'];?></td>
+                                                        <td><?php echo $subname['subname']; ?></td>
                                                         <td><?php echo $row['score']; ?></td>
 
                                                         <td style="text-align: center;"><a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['student_sid']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>
-                                                            
                                                         </td>
                                                     </tr>
 
