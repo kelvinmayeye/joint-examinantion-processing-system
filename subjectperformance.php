@@ -95,40 +95,30 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                                                 cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>SNO</th>
-                                                        <th>Subject</th>
-                                                        <th>GPA</th>
+                                                        <th>SUBJECT</th>
+                                                        <th>TAKEN</th>
                                                         <th>AVERAGE</th>
-                                                        
-                                                        <th>POSITION</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>SNO</th>
-                                                        <th>Subject</th>
-                                                        <th>GPA</th>
+                                                        <th>SUBJECT</th>
+                                                        <th>TAKEN</th>
                                                         <th>AVERAGE</th>
-                                                        
-                                                        <th>POSITION</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-
-
                                                     <?php
-                                                //$NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
+                                                    $sub_code = $row['subcode'];
+                                                    $find_taken = mysqli_query($conn,"SELECT COUNT(*) FROM subject_has_student WHERE subject_subcode ='$sub_code'");
+                                                    $num = mysqli_num_rows($find_taken);
                 
                                                 ?>
                                                     <tr>
+                                                        <td><?php echo $row['subname'];?></td>
+                                                        <td><?php echo $num ?></td>
                                                         <td></td>
-                                                      
-                                                         <td><?php echo $row['subname'];?></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                         <td></td>
                                                         
                                                     </tr>
                                                     <?php } ?>
