@@ -1,11 +1,9 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 include('includes/config.php');
 //the fetch query
 $username = $_SESSION['alogin'];
-
-
 
 //dont select sir the admin
 $query = mysqli_query($conn,"SELECT * FROM users WHERE username !='$username'");
