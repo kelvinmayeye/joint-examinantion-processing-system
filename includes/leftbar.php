@@ -24,8 +24,8 @@
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-home"></i> <span>School</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="add-school.php"><i class="fa fa-bars"></i> <span>Add School</span></a></li>
-                                            <li><a href="view-school.php"><i class="fa fa fa-server"></i> <span>view school</span></a></li>
+                                            <li><a href="add-school.php"><i class="fa fa-plus"></i> <span>Add School</span></a></li>
+                                            <li><a href="view-school.php"><i class="fa fa fa-eye"></i> <span>view school</span></a></li>
                                            
                                         </ul>
                                     </li>
@@ -34,8 +34,8 @@
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-user"></i> <span>Users</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="add-users.php"><i class="fa fa-bars"></i> <span>Add User</span></a></li>
-                                            <li><a href="view-users.php"><i class="fa fa fa-server"></i> <span>View User</span></a></li>
+                                            <li><a href="add-users.php"><i class="fa fa-plus"></i> <span>Add User</span></a></li>
+                                            <li><a href="view-users.php"><i class="fa fa fa-eye"></i> <span>View User</span></a></li>
                                         </ul>
                                     </li>
                                     <?php } ?>
@@ -45,8 +45,8 @@
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-users"></i> <span>Students</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="add-student.php"><i class="fa fa-bars"></i> <span>Add Students</span></a></li>
-                                            <li><a href="view-student.php"><i class="fa fa fa-server"></i> <span>View Students</span></a></li>
+                                            <li><a href="add-student.php"><i class="fa fa-plus"></i> <span>Add Students</span></a></li>
+                                            <li><a href="view-student.php"><i class="fa fa fa-eye"></i> <span>View Students</span></a></li>
                                            
                                         </ul>
                                     </li>
@@ -56,8 +56,8 @@
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Subject</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="add-subject.php"><i class="fa fa-bars"></i> <span>Add Subject</span></a></li>
-                                            <li><a href="view-subject.php"><i class="fa fa fa-server"></i> <span>View Subject</span></a></li>
+                                            <li><a href="add-subject.php"><i class="fa fa-plus"></i> <span>Add Subject</span></a></li>
+                                            <li><a href="view-subject.php"><i class="fa fa fa-eye"></i> <span>View Subject</span></a></li>
                                            
                                         </ul>
                                     </li>
@@ -67,7 +67,7 @@
                                       <li class="has-children">
                                         <a href="#"><i class="fa fa-check-square-o"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="add-score.php"><i class="fa fa-bars"></i> <span>Manage Score</span></a></li>
+                                            <li><a href="add-score.php"><i class="fa fa-plus"></i> <span>Manage Score</span></a></li>
                                         </ul>
                                      </li>
                                     <?php } ?>
@@ -76,7 +76,7 @@
                                       <li class="has-children">
                                         <a href="#"><i class="fa fa-check-square-o"></i> <span>Score</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="add-score-admin.php"><i class="fa fa-bars"></i> <span>Manage Score</span></a></li>
+                                            <li><a href="add-score-admin.php"><i class="fa fa-plus"></i> <span>Manage Score</span></a></li>
                                         </ul>
                                      </li>
                                     <?php } ?>
@@ -86,11 +86,11 @@
                                         <li class="has-children">
                                         <a href="#"><i class="fa fa-line-chart"></i> <span>Result Analysis</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="best-10.php"><i class="fa fa-bars"></i> <span>Overall Best-ten</span></a></li>
+                                            <li><a href="best-10.php"><i class="fa fa-plus"></i> <span>Overall Best-ten</span></a></li>
                                             <!-- <li><a href="manage-results.php"><i class="fa fa fa-server"></i> <span>Overall ten-looser</span></a></li> -->
                                             <!-- <li><a href="subjectperformance.php"><i class="fa fa fa-server"></i> <span>Subject Performance</span></a></li> -->
                                             <!-- <li><a href="schoolperformance.php"><i class="fa fa fa-server"></i> <span>School Performance</span></a></li> -->
-                                            <li><a href="generalresults.php"><i class="fa fa fa-server"></i> <span>Student Detailed Results</span></a></li>
+                                            <li><a href="generalresults.php"><i class="fa fa fa-eye"></i> <span>Student Detailed Results</span></a></li>
                                             <!-- <li><a href="divisionperformance.php"><i class="fa fa fa-server"></i> <span>Division performance</span></a></li> -->
                                             </ul>
                                         </li>
@@ -99,7 +99,11 @@
                                         <li><a href="declare-results.php"><i class="fa fa-balance-scale"></i> <span>Declare Results</span></a></li>
                                         <?php } ?>
 
+                                        <li><a href="my-profile.php"><i class="fa fa-folder-open"></i> <span> My profile</span></a></li>
+
                                         <li><a href="change-password.php"><i class="fa fa-adjust"></i> <span> Change Password</span></a></li>
+
+                                        
                                            
                             
                             </div>

@@ -4,6 +4,19 @@ session_start();
 include('includes/config.php');
 //the fetch query
 $query = mysqli_query($conn,"SELECT * FROM school");
+
+if (isset($_POST['submit'])) {
+    $sch_id = $_POST['sch_id'];
+   $sch_name = $_POST['sch_name'];
+   $sch_type = $_POST['sch_type'];
+
+   $update_sch = mysqli_query($conn,"UPDATE school SET schoolname='$sch_name',schooltype='$sch_type' WHERE regno='$sch_id'");
+   if($update_sch){
+    header("location: view-school.php?success=ok");
+    exit();
+   }
+  
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +86,15 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                             </div>
 
                         </div>
+                        <?php 
+                        @$success = $_GET['success'];
+                        if($success === "ok"){
+                         ?>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="alert alert-success left-icon-alert" role="alert">
+                                            <strong>Well done! </strong>School Updated</div>
+                        </div>
+                    <?php } ?>
                         <!-- /.row -->
                     </div>
                     <!-- /.container-fluid -->
@@ -127,9 +149,56 @@ $query = mysqli_query($conn,"SELECT * FROM school");
                                                         <td><?php echo $row['regno'];?></td>
                                                         <td><?php echo $row['schoolname'];?></td>
                                                         <td><?php echo $row['schooltype'];?></td>
-                                                        <td></td>
+                                                        <td style="text-align: center;"><a href="" data-toggle="modal"
+                                                                data-target="#myModal<?php echo $row['regno']; ?>"> <i
+                                                                    class="fa fa fa-edit mr-3"></i></a>
+                                                        </td>
                                                     </tr>
                                                     
+
+                                                    <!---------------Modal---------------------->
+
+
+                                                    <div class="modal" id="myModal<?php echo $row['regno']; ?>">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title" id="modalLabel">Update School
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method="POST">
+                                                                        <div class="row">
+                                                                        <div class="col-md-8">
+                                                                            <input type="radio" name="sch_id" value="<?php echo $row['regno']; ?>" hidden="" checked> 
+                                                                            <input type="text" name="sch_name" class="form-control" value="<?php echo $row['schoolname']; ?>" >                                                                        
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <select name="sch_type" class="form-control">
+                                                                                <option selected hidden value="<?php echo $row['schooltype'];?>"><?php echo $row['schooltype'];?></option>
+                                                                                <option value="Government">Government</option>
+                                                        <option value="Private">Private</option>
+                                                        <option value="Cooperative">Cooperative</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" name="submit" class="btn btn-primary" value="Update">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                    </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!------------------------------------------->
 
 
                                                 </tbody>

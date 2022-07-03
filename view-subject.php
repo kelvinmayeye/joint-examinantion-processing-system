@@ -4,6 +4,26 @@ session_start();
 include('includes/config.php');
 //the fetch query
 $query = mysqli_query($conn,"SELECT * FROM subject");
+
+if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
+   $sub_nam= $_POST['sub_nam'];
+
+   $update_sub = mysqli_query($conn,"UPDATE subject SET subname='$sub_nam' WHERE subcode='$id'");
+   if($update_sub){
+    header("location: view-subject.php?success=ok");
+   }
+}
+
+if (isset($_POST['yes'])) {
+    $id = $_POST['id'];
+
+   $del_sub = mysqli_query($conn,"DELETE FROM subject WHERE subcode='$id'");
+   if($del_sub){
+    echo "Deleted";
+    header("location: view-subject.php?del=ok");
+   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +93,28 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                             </div>
 
                         </div>
+
+
+                        <?php 
+                        @$success = $_GET['success'];
+                        if($success === "ok"){
+                         ?>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="alert alert-success left-icon-alert" role="alert">
+                                            <strong>Well done! </strong>Subject Was updated</div>
+                        </div>
+                    <?php } ?>
+
+
+                    <?php 
+                        @$del = $_GET['del'];
+                        if($del === "ok"){
+                         ?>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="alert alert-success left-icon-alert" role="alert">
+                                            <strong>Well done! </strong>Subject Was Deleted</div>
+                        </div>
+                    <?php } ?>
                         <!-- /.row -->
                     </div>
                     <!-- /.container-fluid -->
@@ -100,14 +142,16 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                                                         <th>SNO</th>
                                                         <th>Subject Code</th>
                                                         <th>Subject Name</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
                         
                                                         <th>SNO</th>
-                                                        <th>Fullname</th>
-                                                        <th>Sex</th>
+                                                        <th>Subject Code</th>
+                                                        <th>Subject Name</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -122,7 +166,92 @@ $query = mysqli_query($conn,"SELECT * FROM subject");
                                                         <td><?php echo $NO;?></td>
                                                         <td><?php echo $row['subcode'];?></td>
                                                         <td><b><?php echo $row['subname'];?></b></td>
+                                                        <td style="text-align: center;"><a href="" data-toggle="modal"
+                                                                data-target="#myModal<?php echo $row['subcode']; ?>"> <i
+                                                                    class="fa fa fa-edit mr-3"></i></a>&nbsp;&nbsp;&nbsp;
+
+                                                                    <a href="" data-toggle="modal"
+                                                                data-target="#myModaldel<?php echo $row['subcode']; ?>"> <i
+                                                                    class="fa fa fa-trash mr-3"></i></a>
+                                                        </td>
                                                     </tr>
+
+
+                                                    <!---------------Modal---------------------->
+
+
+                                                    <div class="modal" id="myModal<?php echo $row['subcode']; ?>">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title" id="modalLabel">Update Subject name
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method="POST">
+                                                                        <div class="row">
+                                                                        <div class="col-md-8">
+                                                                            <input type="radio" name="id" value="<?php echo $row['subcode']; ?>" hidden="" checked> 
+                                                                            <input type="text" name="sub_nam" class="form-control" value="<?php echo $row['subname']; ?>" >                      
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" name="submit" class="btn btn-primary" value="Update">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                    </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!------------------------------------------->
+
+
+                                                    <!---------------Modal for DELETE------------->
+
+
+                                                    <div class="modal" id="myModaldel<?php echo $row['subcode']; ?>">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <!-- <h4 class="modal-title" id="modalLabel">Update Subject name
+                                                                    </h4> -->
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method="POST">
+                                                                        <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="radio" name="id" value="<?php echo $row['subcode']; ?>" hidden="" checked> 
+                                                                            <h3>Are you sure?<br>you want to delete <?php echo $row['subname']; ?></h3>                      
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" name="yes" class="btn btn-danger" value="Yes">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                    </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!------------------------------------------->
+
+
+
                                                     <?php $NO=$NO+1;} ?>
 
 

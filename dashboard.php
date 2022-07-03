@@ -48,49 +48,69 @@ error_reporting(0);
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <a class="dashboard-stat bg-primary" href="manage-students.php">
-
-
-                                            <span class="number counter">23</span>
-                                            <span class="name">Regd Users</span>
-                                            <span class="bg-icon"><i class="fa fa-users"></i></span>
+                                        <a class="dashboard-stat bg-primary" href="#">
+                                            <?php 
+                                            $total_user = mysqli_query($conn,"SELECT * FROM users");
+                                            $get_users = mysqli_num_rows($total_user);
+                                             ?>
+                                            <span class="number counter"><?php echo $get_users; ?></span>
+                                            <span class="name">Total Users</span>
+                                            <span class="bg-icon"><i class="fa fa-user"></i></span>
                                         </a>
                                         <!-- /.dashboard-stat -->
                                     </div>
                                     <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
-                                        <a class="dashboard-stat bg-danger" href="manage-subjects.php">
-
-                                            <span class="number counter">4</span>
-                                            <span class="name">Subjects Listed</span>
-                                            <span class="bg-icon"><i class="fa fa-ticket"></i></span>
+                                        <a class="dashboard-stat bg-danger" href="#">
+                                            <?php 
+                                            $total_sub = mysqli_query($conn,"SELECT * FROM subject");
+                                            $get_sub = mysqli_num_rows($total_sub);
+                                             ?>
+                                            <span class="number counter"><?php echo $get_sub; ?></span>
+                                            <span class="name">Total Subjects</span>
+                                            <span class="bg-icon"><i class="fa fa-lightbulb-o"></i></span>
                                         </a>
                                         <!-- /.dashboard-stat -->
                                     </div>
                                     <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top:1%;">
-                                        <a class="dashboard-stat bg-warning" href="manage-classes.php">
-                                        
-                                            <span class="number counter">14</span>
-                                            <span class="name">Total classes listed</span>
-                                            <span class="bg-icon"><i class="fa fa-gear"></i></span>
+                                        <a class="dashboard-stat bg-warning" href="#">
+                                            <?php 
+                                            $total_stu = mysqli_query($conn,"SELECT * FROM student");
+                                            $get_stu = mysqli_num_rows($total_stu);
+                                             ?>
+                                            <span class="number counter"><?php echo $get_stu; ?></span>
+                                            <span class="name">Total Students</span>
+                                            <span class="bg-icon"><i class="fa fa-users"></i></span>
                                         </a>
                                         <!-- /.dashboard-stat -->
                                     </div>
                                     <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top:1%">
-                                        <a class="dashboard-stat bg-success" href="manage-results.php">                                     
-
-                                            <span class="number counter">2</span>
-                                            <span class="name">Results Declared</span>
+                                        <a class="dashboard-stat bg-success" href="#">
+                                            <?php 
+                                            $total_stu_res = mysqli_query($conn,"SELECT * FROM result_processing");
+                                            $get_stu_res = mysqli_num_rows($total_stu_res);
+                                             ?>
+                                            <span class="number counter"><?php echo $get_stu_res; ?></span>
+                                            <span class="name">Students Results</span>
                                             <span class="bg-icon"><i class="fa fa-file-text"></i></span>
                                         </a>
                                         <!-- /.dashboard-stat -->
                                     </div>
                                     <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
+                                    <?php 
+                                            $total_dec_res = mysqli_query($conn,"SELECT * FROM result_processing");
+                                            $get_dec_res = mysqli_num_rows($total_dec_res);
+                                            if($get_dec_res > 0){
+                                            ?>
+                                    <div class="col-md-12 col-sm-12" style="margin-top: 30px;">
+                                        <div class="alert alert-success" role="alert"><b>Result Has Been Declared</b><br>This Notification is to Remind/inform you that Result are Declared</div>                                        
+                                    </div>
+                                <?php } ?>
 
                                 </div>
                                 <!-- /.row -->
@@ -163,7 +183,7 @@ error_reporting(0);
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 }
-                toastr["success"]( "Welcome to Joint Examination Results Management System!");
+                toastr["success"]( "JOINT EXAMINATION PROCESSING RESULT SYSTEM!");
 
             });
         </script>

@@ -7,6 +7,18 @@ $username = $_SESSION['alogin'];
 
 $query = mysqli_query($conn,"SELECT * FROM users WHERE username !='$username'");
 
+if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
+   $role = $_POST['role'];
+
+   $update_sch = mysqli_query($conn,"UPDATE users SET role='$role' WHERE sno='$id'");
+   if($update_sch){
+    header("location: view-users.php?success=ok");
+    exit();
+   }
+  
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,8 +146,61 @@ $query = mysqli_query($conn,"SELECT * FROM users WHERE username !='$username'");
                                                         <td><b><?php echo $row['sex'];?></b></td>
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>
-                                                        <td></td>
+                                                        <td style="text-align: center;"><a href="" data-toggle="modal"
+                                                                data-target="#myModal<?php echo $row['sno']; ?>"> <i
+                                                                    class="fa fa fa-edit mr-3"></i></a>
+                                                        </td>
                                                     </tr>
+
+
+                                                    <!---------------Modal---------------------->
+
+
+                                                    <div class="modal" id="myModal<?php echo $row['sno']; ?>">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title" id="modalLabel">Update User
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method="POST">
+                                                                        <div class="row">
+                                                                        <div class="col-md-8">
+                                                                            <input type="radio" name="id" value="<?php echo $row['sno']; ?>" hidden="" checked> 
+                                                                            <input type="text" name="sch_name" readonly class="form-control" value="<?php echo $row['f_name'].' '.$row['m_name'].' '.$row['l_name'];?>" >                                                                        
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <select name="role" class="form-control">
+                                                        <option selected value="<?php echo $row['role']; ?>" hidden><?php echo $row['role']; ?></option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="head">Head of School</option>
+                                                        <option value="academic">Academic</option>
+                                                        <option value="teacher">Teacher</option>
+                                                    </select>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" name="submit" class="btn btn-primary" value="Update">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                </div>
+                                                                    </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!------------------------------------------->
+
+
+
+
                                                     <?php $NO=$NO+1;} ?>
 
 
