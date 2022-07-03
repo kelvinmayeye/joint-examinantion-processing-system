@@ -118,6 +118,7 @@ if (isset($_POST['submit'])) {
                                                         <th>Sex</th>
                                                         <th>School Reg No</th>
                                                         <th>Role</th>
+                                                        <th>Subject</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -129,6 +130,7 @@ if (isset($_POST['submit'])) {
                                                         <th>Sex</th>
                                                         <th>School Reg No</th>
                                                         <th>Role</th>
+                                                        <th>Subject</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </tfoot>
@@ -146,6 +148,7 @@ if (isset($_POST['submit'])) {
                                                         <td><b><?php echo $row['sex'];?></b></td>
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>
+                                                        <td></td>
                                                         <td style="text-align: center;"><a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['sno']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>

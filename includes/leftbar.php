@@ -86,7 +86,7 @@
                                         <li class="has-children">
                                         <a href="#"><i class="fa fa-line-chart"></i> <span>Result Analysis</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="best-10.php"><i class="fa fa-plus"></i> <span>Overall Best-ten</span></a></li>
+                                            <li><a href="best-10.php"><i class="fa fa-eye"></i> <span>Overall Best-ten</span></a></li>
                                             <!-- <li><a href="manage-results.php"><i class="fa fa fa-server"></i> <span>Overall ten-looser</span></a></li> -->
                                             <!-- <li><a href="subjectperformance.php"><i class="fa fa fa-server"></i> <span>Subject Performance</span></a></li> -->
                                             <!-- <li><a href="schoolperformance.php"><i class="fa fa fa-server"></i> <span>School Performance</span></a></li> -->

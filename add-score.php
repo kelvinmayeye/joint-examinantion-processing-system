@@ -140,7 +140,7 @@ if(isset($_POST['add_score'])){
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School</th>
-                                                        <th>Subject Score</th>
+                                                        <th style="text-transform: lowercase;"><?php echo $sub_nm; ?> Score</th>
                                                         <th>Action</th>
 
                                                     </tr>
@@ -151,7 +151,7 @@ if(isset($_POST['add_score'])){
                                                         <th>Fullname</th>
                                                         <th>Sex</th>
                                                         <th>School</th>
-                                                        <th>Subject Score</th>
+                                                        <th style="text-transform: lowercase;"><?php echo $sub_nm; ?> Score</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </tfoot>
@@ -209,7 +209,7 @@ if(isset($_POST['add_score'])){
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <input class="form-control" type="text" name="subj_score"
-                                                                            placeholder="Student Score" maxlength="3" >
+                                                                            placeholder="Student Score" maxlength="3" value="<?php echo $row['score']; ?>" >
                                                                         </div>
                                                                         
                                                                     </div>

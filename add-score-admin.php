@@ -8,14 +8,19 @@ $role = $_SESSION['role'];
  $query = mysqli_query($conn,"SELECT * FROM subject_has_student");   
 
 if(isset($_POST['add_score'])){
+    $sub_code = $_POST['sub_code'];
     $score = $_POST['subj_score'];
     $stud_id = $_POST['stud_id'];
 
-    $update_score = mysqli_query($conn,"UPDATE subject_has_student SET score='$score' WHERE subject_subcode='$has_subject' AND student_sid='$stud_id'");
+    echo $sub_code;
+
+    die();
+
+    $update_score = mysqli_query($conn,"UPDATE subject_has_student SET score='$score' WHERE subject_subcode='$sub_code' AND student_sid='$stud_id'");
     if($update_score){
-        header("location: add-score.php?msg=score added");
+        header("location: add-score-admin.php?msg=score added");
     }else{
-        header("location: add-score.php?error=Sorry please Try Again");
+        header("location: add-score-admin.php?error=Sorry please Try Again");
     }
 
 }
@@ -174,11 +179,11 @@ if(isset($_POST['add_score'])){
                                                         <td style="text-align: center;"><a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['student_sid']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>
-                                                        </td>
-                                                    </tr>
 
+                                                                    <a href="hfjf.php?<?php echo $row['subject_subcode']; ?>" > <i
+                                                                    class="fa fa fa-edit mr-3"></i></a>
 
-                                                    <!---------------Modal---------------------->
+                                                                    <!---------------Modal---------------------->
 
 
                                                     <div class="modal" id="myModal<?php echo $row['student_sid']; ?>">
@@ -189,7 +194,7 @@ if(isset($_POST['add_score'])){
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
-                                                                    <h4 class="modal-title" id="modalLabel">Modal Title
+                                                                    <h4 class="modal-title" id="modalLabel">Add/Update score
                                                                     </h4>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -197,11 +202,14 @@ if(isset($_POST['add_score'])){
                                                                         <div class="row">
                                                                         <div class="col-md-6">
                                                                             <input type="radio" checked  name="stud_id" value="<?php echo $row['student_sid']; ?>" hidden="true" >
+                                                                            <input type="radio" checked  name="sub_code" value="<?php echo $row['subject_subcode']; ?>" hidden="true" >
                                                                             <label><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name']; ?></label>
+
+                                                                            <?php echo $row['subject_subcode']; ?>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <input class="form-control" type="text" name="subj_score"
-                                                                            placeholder="Student Score" maxlength="3" >
+                                                                            placeholder="Student Score" maxlength="3" value="<?php echo $row['score']; ?>" >
                                                                         </div>
                                                                         
                                                                     </div>
@@ -217,6 +225,11 @@ if(isset($_POST['add_score'])){
                                                     </div>
 
                                                     <!------------------------------------------->
+                                                        </td>
+                                                    </tr>
+
+
+                                                    
 
 
                                                     <?php } ?>
