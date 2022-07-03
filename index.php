@@ -43,6 +43,7 @@ include('includes/config.php');
                         <hr color="#000" />
                         <marquee direction="up"  onmouseover="this.stop();" onmouseout="this.start();">
                    <ul> 
+                    <li><a href="public-view.php" target="_blank">Public View</li>
                     <li><a href="" target="_blank">Registered School</li>
                     <li><a href="" target="_blank">Registered Student</li>                    
                     <li><a href="" target="_blank">Result Analysis</li>
