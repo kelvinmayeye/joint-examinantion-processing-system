@@ -4,13 +4,11 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 // date_default_timezone_set('Africa/Nairobi');
-
+error_reporting(0);
 // Create connection
 $conn = mysqli_connect('127.0.0.1', 'root', '', 'joint');
 // Check connection
 if (!$conn) {
     die("Connection Failed: " . mysqli_connect_error());
 }
-
-error_reporting(0);
 ?>
