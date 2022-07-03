@@ -5,6 +5,9 @@ include('includes/config.php');
 //the fetch query
 $username = $_SESSION['alogin'];
 
+
+
+//dont select sir the admin
 $query = mysqli_query($conn,"SELECT * FROM users WHERE username !='$username'");
 
 if (isset($_POST['submit'])) {
@@ -14,7 +17,6 @@ if (isset($_POST['submit'])) {
    $update_sch = mysqli_query($conn,"UPDATE users SET role='$role' WHERE sno='$id'");
    if($update_sch){
     header("location: view-users.php?success=ok");
-    exit();
    }
   
 }
@@ -140,6 +142,12 @@ if (isset($_POST['submit'])) {
                                                     <?php
                                                 $NO = 1;
                                                 while ($row = mysqli_fetch_array($query)) {
+                                                        $user_id = $row['sno'];
+                                                    $find_asg_sub = mysqli_query($conn,"SELECT * FROM subject_has_users WHERE users_sno='$user_id'");
+                                                    $get_sub_id = mysqli_fetch_array($find_asg_sub);
+                                                        $sub_code = $get_sub_id['subject_subcode'];
+                                                    $find_sub_name = mysqli_query($conn,"SELECT * FROM subject WHERE subcode='$sub_code'");
+                                                    $sub_name = mysqli_fetch_array($find_sub_name);
                 
                                                 ?>
                                                     <tr>
@@ -148,7 +156,7 @@ if (isset($_POST['submit'])) {
                                                         <td><b><?php echo $row['sex'];?></b></td>
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>
-                                                        <td></td>
+                                                        <td><?php echo $sub_name['subname']; ?></td>
                                                         <td style="text-align: center;"><a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['sno']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>

@@ -7,23 +7,23 @@ $role = $_SESSION['role'];
 
  $query = mysqli_query($conn,"SELECT * FROM subject_has_student");   
 
-if(isset($_POST['add_score'])){
-    $sub_code = $_POST['sub_code'];
-    $score = $_POST['subj_score'];
-    $stud_id = $_POST['stud_id'];
+// if(isset($_POST['add_score'])){
+//     $sub_code = $_POST['sub_code'];
+//     $score = $_POST['subj_score'];
+//     $stud_id = $_POST['stud_id'];
 
-    echo $sub_code;
+//     echo $sub_code;
 
-    die();
+//     die();
 
-    $update_score = mysqli_query($conn,"UPDATE subject_has_student SET score='$score' WHERE subject_subcode='$sub_code' AND student_sid='$stud_id'");
-    if($update_score){
-        header("location: add-score-admin.php?msg=score added");
-    }else{
-        header("location: add-score-admin.php?error=Sorry please Try Again");
-    }
+//     $update_score = mysqli_query($conn,"UPDATE subject_has_student SET score='$score' WHERE subject_subcode='$sub_code' AND student_sid='$stud_id'");
+//     if($update_score){
+//         header("location: add-score-admin.php?msg=score added");
+//     }else{
+//         header("location: add-score-admin.php?error=Sorry please Try Again");
+//     }
 
-}
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,7 +133,7 @@ if(isset($_POST['add_score'])){
                                                         <th>School</th>
                                                         <th>Subject</th>
                                                         <th>Subject Score</th>
-                                                        <th>Action</th>
+                                                        <!-- <th>Action</th> -->
 
                                                     </tr>
                                                 </thead>
@@ -145,7 +145,7 @@ if(isset($_POST['add_score'])){
                                                         <th>School</th>
                                                         <th>subject</th>
                                                         <th>Subject Score</th>
-                                                        <th>Action</th>
+                                                        <!-- <th>Action</th> -->
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -176,14 +176,15 @@ if(isset($_POST['add_score'])){
                                                         <td><?php echo $subname['subname']; ?></td>
                                                         <td><?php echo $row['score']; ?></td>
 
-                                                        <td style="text-align: center;"><a href="" data-toggle="modal"
+                                                        <!-- <td style="text-align: center;"><a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['student_sid']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>
 
-                                                                    <a href="hfjf.php?<?php echo $row['subject_subcode']; ?>" > <i
-                                                                    class="fa fa fa-edit mr-3"></i></a>
+                                                        </td> -->
+                                                    </tr>
 
-                                                                    <!---------------Modal---------------------->
+
+                                                    <!---------------Modal---------------------->
 
 
                                                     <div class="modal" id="myModal<?php echo $row['student_sid']; ?>">
@@ -205,7 +206,7 @@ if(isset($_POST['add_score'])){
                                                                             <input type="radio" checked  name="sub_code" value="<?php echo $row['subject_subcode']; ?>" hidden="true" >
                                                                             <label><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name']; ?></label>
 
-                                                                            <?php echo $row['subject_subcode']; ?>
+                                                                            <?php echo $subname['subname']; ?>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <input class="form-control" type="text" name="subj_score"
@@ -225,11 +226,6 @@ if(isset($_POST['add_score'])){
                                                     </div>
 
                                                     <!------------------------------------------->
-                                                        </td>
-                                                    </tr>
-
-
-                                                    
 
 
                                                     <?php } ?>
