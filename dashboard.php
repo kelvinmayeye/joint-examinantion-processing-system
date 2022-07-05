@@ -92,11 +92,11 @@ error_reporting(0);
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="margin-top:1%">
                                         <a class="dashboard-stat bg-success" href="#">
                                             <?php 
-                                            $total_stu_res = mysqli_query($conn,"SELECT * FROM result_processing");
-                                            $get_stu_res = mysqli_num_rows($total_stu_res);
+                                            $total_school = mysqli_query($conn,"SELECT * FROM school");
+                                            $get_school = mysqli_num_rows($total_school);
                                              ?>
-                                            <span class="number counter"><?php echo $get_stu_res; ?></span>
-                                            <span class="name">Students Results</span>
+                                            <span class="number counter"><?php echo $get_school; ?></span>
+                                            <span class="name">Total School</span>
                                             <span class="bg-icon"><i class="fa fa-file-text"></i></span>
                                         </a>
                                         <!-- /.dashboard-stat -->
