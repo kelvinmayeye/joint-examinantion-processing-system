@@ -108,7 +108,7 @@ error_reporting(0);
                                             if($get_dec_res > 0){
                                             ?>
                                     <div class="col-md-12 col-sm-12" style="margin-top: 30px;">
-                                        <div class="alert alert-success" role="alert"><b>Result Has Been Declared</b><br>This Notification is to Remind/inform you that Result are Declared</div>                                        
+                                        <div class="alert alert-danger" role="alert"><b>Result Has Been Declared</b><br>This Notification is to Remind/inform you that Result are Declared</div>                                        
                                     </div>
                                 <?php } ?>
 

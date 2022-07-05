@@ -44,15 +44,6 @@ include('includes/config.php');
                         <marquee direction="up"  onmouseover="this.stop();" onmouseout="this.start();">
                    <ul> 
                     <li><a href="public-view.php" target="_blank">Public View</li>
-                    <li><a href="" target="_blank">Registered School</li>
-                    <li><a href="" target="_blank">Registered Student</li>                    
-                    <li><a href="" target="_blank">Result Analysis</li>
-                    <li><a href="" target="_blank">School Result</li>
-                    <li><a href="" target="_blank">Centre Poistion</li>
-                    <li><a href="" target="_blank">Best Test</li>
-                    <li><a href="" target="_blank">Subject Performance</li>
-                    <li><a href="" target="_blank">School Result</li>
-                    <li><a href="" target="_blank">Student Individual Results</li>
                    </ul>
                </marquee>
 
