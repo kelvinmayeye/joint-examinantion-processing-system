@@ -128,7 +128,6 @@ include('includes/config.php');
                                                         <th>Sex</th>
                                                         <th>AGGT</th>
                                                         <th>Division</th>
-                                                        <th>Detailed Subject Results</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -138,7 +137,6 @@ include('includes/config.php');
                                                         <th>Sex</th>
                                                         <th>AGGT</th>
                                                         <th>Division</th>
-                                                        <th>Detailed Subject Results</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -173,7 +171,6 @@ include('includes/config.php');
 
                                                             ?>
                                                         </td>
-                                                         <td></td>
                                                         
                                                     </tr>
                                                     <?php } ?>

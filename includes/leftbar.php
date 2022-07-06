@@ -91,7 +91,7 @@ if($_SESSION['alogin']=="" || $_SESSION['role']=="" || $_SESSION['user_id']=="")
                                         <a href="#"><i class="fa fa-line-chart"></i> <span>Result Analysis</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="best-10.php"><i class="fa fa-eye"></i> <span>Overall Best-ten</span></a></li>
-                                            <li><a href="schoolperformance.php"><i class="fa fa fa-eye"></i> <span>School Performance</span></a></li>
+                                
                                             <li><a href="generalresults.php"><i class="fa fa fa-eye"></i> <span>Student Detailed Results</span></a></li>
                                             </ul>
                                         </li>
