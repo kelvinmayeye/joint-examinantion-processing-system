@@ -2,36 +2,60 @@
 session_start();
 
 include('includes/config.php');
-error_reporting(0);
-if(isset($_POST['submit'])){
-$schoolid=$_POST['schoolid'];
-$f_name=$_POST['firstname']; 
+// error_reporting(0);
+$user_id = $_SESSION['user_id'];
+//get user details
+$ret=mysqli_query($conn,"select * from users where sno='$user_id'");
+$row=mysqli_fetch_array($ret);
+
+//get user school assign
+$school = $row['sch_id'];
+// echo $school;
+// exit();
+$sql = "select * from school where regno='$school'";
+$ret2=mysqli_query($conn,$sql);
+if(mysqli_num_rows($ret2) >0){
+ $row2 = mysqli_fetch_array($ret2);
+}else{
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+//get user subject
+$sch = "select * from subject_has_users where users_sno='$user_id'";
+$ret3=mysqli_query($conn,$sch);
+if(mysqli_num_rows($ret3) >0){
+ $row3 = mysqli_fetch_array($ret3);
+}else{
+    echo "Error: " . $sch . "<br>" . mysqli_error($conn);
+}
+
+//user sub code to find sub name
+$subcode = $row3['subject_subcode'];
+//get user subject
+$sub_nam = "select * from subject where subcode='$subcode'";
+$ret4=mysqli_query($conn,$sub_nam);
+if(mysqli_num_rows($ret4) >0){
+ $row3 = mysqli_fetch_array($ret4);
+}else{
+    echo "Error: " . $sub_nam . "<br>" . mysqli_error($conn);
+}
+
+if (isset($_POST['submit'])) {
+$f_name=strtolower($_POST['firstname']);
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
-$sex=$_POST['optionsRadiosinline'];
-$username=$_POST['uname'];
-$password=md5($_POST['pass']);
-$role=$_POST['role'];
-$sub_code=$_POST['sub_code'];
 
-$sql="INSERT INTO  users(sch_id,f_name,m_name,l_name,sex,username,password,role) VALUES('$schoolid','$f_name','$m_name','$l_name','$sex','$username','$password','$role')";
-if(mysqli_query($conn,$sql)){
+$sql = "UPDATE users SET f_name='$f_name',m_name='$m_name',l_name='$l_name' WHERE sno='$user_id'";
 
-    $last_id = mysqli_insert_id($conn);
-
-    $subj_has_user = "INSERT INTO subject_has_users(subject_subcode, users_sno) VALUES ('$sub_code','$last_id')";
-
-    if(mysqli_query($conn,$subj_has_user)){
-        
-    }
-
-    $msg = 'User were added';
-}else{
-
-    $error = 'Ooops! Try Again';
+if (mysqli_query($conn, $sql)) {
+    $msg = "Record updated successfully";
+} else {
+    $error = "Please try again";
 }
 
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +64,7 @@ if(mysqli_query($conn,$sql)){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SMS Admin| User Admission< </title>
+    <title>SMS Admin| User Profile </title>
             <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
             <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
             <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
@@ -69,7 +93,7 @@ if(mysqli_query($conn,$sql)){
                     <div class="container-fluid">
                         <div class="row page-title-div">
                             <div class="col-md-6">
-                                <h2 class="title">User Registration</h2>
+                                <h2 class="title">User Profile</h2>
 
                             </div>
 
@@ -81,7 +105,7 @@ if(mysqli_query($conn,$sql)){
                                 <ul class="breadcrumb">
                                     <li><a href="dashboard.php"><i class="fa fa-home"></i> Home</a></li>
 
-                                    <li class="active">User Registration</li>
+                                    <li class="active">User profile</li>
                                 </ul>
                             </div>
 
@@ -103,7 +127,7 @@ if(mysqli_query($conn,$sql)){
                                         <div class="alert alert-success left-icon-alert" role="alert">
                                             <strong>Success!</strong><?php echo htmlentities($msg); ?>
                                         </div><?php } 
-else if($error){?>
+                                        else if($error){?>
                                         <div class="alert alert-danger left-icon-alert" role="alert">
                                             <strong>Failed !</strong> <?php echo htmlentities($error); ?>
                                         </div>
@@ -111,110 +135,52 @@ else if($error){?>
                                         <form class="form-horizontal" method="post">
 
                                             <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">First Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="firstname" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                <label for="default" class="col-sm-2 control-label">Firstname/Username</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="firstname" class="form-control" value="<?php echo $row['f_name']; ?>">
                                                 </div>
-                                            </div>
+                                                     <label for="default" class="col-sm-2 control-label">Middlename</label>
 
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Second Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="middlename" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="middlename" class="form-control" value="<?php echo $row['m_name']; ?>" >
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Last Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="lastname" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="lastname" class="form-control" value="<?php echo $row['l_name']; ?>" >
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">School</label>
-                                                <div class="col-sm-10">
-                                                    <select name="schoolid" required="" class="form-control">
-                                                        <option selected disabled>Choose school</option>
-                                                        <!-- selected from the database -->
-                                                        <?php
-                                                        $getsch_id = mysqli_query($conn,"SELECT regno,schoolname FROM school");
-
-                                                        while ($row = mysqli_fetch_array($getsch_id)) {
-                                                        ?>
-                                                        <option value="<?php echo $row['regno'];?>">
-                                                            <?php echo $row['schoolname']; ?></option>
-                                                        <?php } ?>
-                                                    </select>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="" class="form-control" value="<?php echo $row2['schoolname']; ?>" readonly>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Sex</label>
                                                 <div class="col-sm-10">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadiosinline"
-                                                            id="optionsRadios3" value="M" checked> Male
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="optionsRadiosinline"
-                                                            id="optionsRadios4" value="F"> Female
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">User Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="uname" class="form-control" id="fullanme"
-                                                        required="required" autocomplete="off">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Password</label>
-                                                <div class="col-sm-10">
-                                                    <input type="password" name="pass" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
+                                                    <label for="default"><?php echo $row['sex']; ?></label>
+                                                    
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="default" class="col-sm-2 control-label">Role</label>
                                                 <div class="col-sm-4">
-                                                    <select name="role" class="form-control">
-                                                        <option selected disabled hidden>Choose user role</option>
-                                                        <option value="admin">Admin</option>
-                                                        <option value="head">Head of School</option>
-                                                        <option value="academic">Academic</option>
-                                                        <option value="teacher">Teacher</option>
-                                                    </select>
+                                                    <input type="text" class="form-control" value="<?php echo $row['role']; ?>" readonly>
                                                 </div>
                                                 <div class="col-md-2">
                                                      <label for="default" class="col-sm-2 control-label">Assign Subject</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <select name="sub_code" required="" class="form-control">
-                                                        <option selected disabled>Select Subject</option>
-                                                        <!-- selected from the database -->
-                                                        <?php
-                                                        $getsch_id = mysqli_query($conn,"SELECT subcode,subname FROM subject");
-
-                                                        while ($row = mysqli_fetch_array($getsch_id)) {
-                                                        ?>
-                                                        <option value="<?php echo $row['subcode'];?>">
-                                                            <?php echo $row['subname']; ?></option>
-                                                        <?php } ?>
-                                                    </select>
+                                                    <input type="text" name="lastname" class="form-control" value="<?php echo $row3['subname']; ?>" readonly>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                                            <button type="submit" name="submit" class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
 

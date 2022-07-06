@@ -11,6 +11,12 @@ $query = mysqli_query($conn,"SELECT DISTINCT * FROM subject_has_student WHERE su
  $query = mysqli_query($conn,"SELECT * FROM subject_has_student WHERE subject_subcode");   
 }
 
+//check if result are declared
+ $total_dec_res = mysqli_query($conn,"SELECT * FROM result_processing");
+   $get_dec_res = mysqli_num_rows($total_dec_res);
+
+
+
 if(isset($_POST['add_score'])){
     $score = $_POST['subj_score'];
     $stud_id = $_POST['stud_id'];
@@ -172,15 +178,18 @@ if(isset($_POST['add_score'])){
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row['student_sid'];?></td>
-                                                        <td><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name'];?>
+                                                        <td style="text-transform: uppercase;"><?php echo $row2['f_name']." ".$row2['m_name']." ".$row2['l_name'];?>
                                                         </td>
                                                         <td><?php echo $row2['sex'];?></td>
                                                         <td><?php echo $row3['schoolname'];?></td>
                                                         <td><?php echo $row['score']; ?></td>
 
-                                                        <td style="text-align: center;"><a href="" data-toggle="modal"
+                                                        <td style="text-align: center;">
+                                                            <?php  if($get_dec_res == 0){ ?>
+                                                            <a href="" data-toggle="modal"
                                                                 data-target="#myModal<?php echo $row['student_sid']; ?>"> <i
                                                                     class="fa fa fa-edit mr-3"></i></a>
+                                                                <?php } ?>
                                                             
                                                         </td>
                                                     </tr>

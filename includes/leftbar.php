@@ -48,7 +48,7 @@ if($_SESSION['alogin']=="" || $_SESSION['role']=="" || $_SESSION['user_id']=="")
                                     <?php } ?>
 
 
-                                    <?php if($_SESSION['role']==='admin'|| $_SESSION['role']==='head'|| $_SESSION['role']==='academic'){ ?>
+                                    <?php if($_SESSION['role']==='head'|| $_SESSION['role']==='academic'){ ?>
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-users"></i> <span>Students</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">

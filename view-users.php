@@ -150,7 +150,7 @@ if (isset($_POST['submit'])) {
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $NO;?></td>
-                                                        <td><?php echo $row['f_name'].' '.$row['m_name'].' '.$row['l_name'];?></td>
+                                                        <td style="text-transform: uppercase;"><?php echo $row['f_name'].' '.$row['m_name'].' '.$row['l_name'];?></td>
                                                         <td><b><?php echo $row['sex'];?></b></td>
                                                         <td><?php echo $row['sch_id'];?></td>
                                                         <td><?php echo $row['role'];?></td>

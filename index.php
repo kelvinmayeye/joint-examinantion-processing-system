@@ -19,7 +19,7 @@ include('includes/config.php');
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.php">JRMS-(Joint Result Management System)</a>
+<a class="navbar-brand" href="index.php">Joint Examination Processing Result System-Jeprs</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -31,17 +31,20 @@ include('includes/config.php');
             </div>
         </nav>
         <!-- Header - set the background image for the header in the line below-->
-        <header class="py-5 bg-image-full" style="background-image: url('images/background-image.jpg')">
-    
-        </header>
-       <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
+        <header class="py-3 bg-image-full" style="background-image: url('images/wal1.jpg')">
+
+            <!-- Content section-->
+        <section class="py-2">
+            <div class="container my-3">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Available links</h2>
+                    <div class="col-lg-8">
+                        <h2>JEPRS</h2>
+                        <p></p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>Available links</h4>
                         <hr color="#000" />
-                        <marquee direction="up"  onmouseover="this.stop();" onmouseout="this.start();">
+                        <marquee direction="up" onmouseover="this.stop();" onmouseout="this.start();">
                    <ul> 
                     <li><a href="public-view.php" target="_blank">Public View</li>
                    </ul>
@@ -52,9 +55,12 @@ include('includes/config.php');
             </div>
         </section>
 
+    
+        </header>
+       
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Joint Result Management System <?php echo date('Y');?></p></div>
+        <footer class="py-4 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Joint Examination Processing Result System <?php echo date('Y');?></p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

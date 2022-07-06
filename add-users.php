@@ -5,12 +5,12 @@ include('includes/config.php');
 error_reporting(0);
 if(isset($_POST['submit'])){
 $schoolid=$_POST['schoolid'];
-$f_name=$_POST['firstname']; 
+$f_name=strtolower($_POST['firstname']);
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
 $sex=$_POST['optionsRadiosinline'];
-$username=$_POST['uname'];
-$password=md5($_POST['pass']);
+$username=$_POST['firstname'];
+$password=md5(12345678);
 $role=$_POST['role'];
 $sub_code=$_POST['sub_code'];
 
@@ -96,6 +96,7 @@ if(mysqli_query($conn,$sql)){
                                     <div class="panel-heading">
                                         <div class="panel-title">
                                             <h5>Fill the User information</h5>
+                                            <h6>User default password is 123456</h6>
                                         </div>
                                     </div>
                                     <div class="panel-body">
@@ -163,22 +164,6 @@ else if($error){?>
                                                         <input type="radio" name="optionsRadiosinline"
                                                             id="optionsRadios4" value="F"> Female
                                                     </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">User Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="uname" class="form-control" id="fullanme"
-                                                        required="required" autocomplete="off">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="default" class="col-sm-2 control-label">Password</label>
-                                                <div class="col-sm-10">
-                                                    <input type="password" name="pass" class="form-control"
-                                                        id="fullanme" required="required" autocomplete="off">
                                                 </div>
                                             </div>
 

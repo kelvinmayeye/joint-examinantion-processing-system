@@ -106,7 +106,7 @@ mysqli_close($conn);
                                                     Number</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="regno" maxlength="5" class="form-control" id="fullanme"
-                                                        required="required" autofocus="" pattern="[0-9]+" title="must be number form 0-9 only 5 character">
+                                                        required="required" autofocus="">
                                                 </div>
                                             </div>
 

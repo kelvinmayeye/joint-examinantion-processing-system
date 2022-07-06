@@ -3,7 +3,7 @@
 include('includes/config.php');
 
 if(isset($_POST['login'])){
-$uname=$_POST['username'];
+$uname= strtolower($_POST['username']);
 $password=md5($_POST['password']);
 
 $sql_ad  ="SELECT sno,username,password,role FROM users WHERE username='$uname' and password='$password'";
@@ -136,7 +136,7 @@ $result_ad = mysqli_query($conn, $sql_ad);
                                                 </div>
                                             </div>
                                             <!-- /.panel -->
-                                            <p class="text-muted text-center"><small>Joint Result Management System</small></p>
+                                            <p class="text-muted text-center"><small><a href="index.php">Home</a><br>Joint Result Management System</small></p>
                                         </div>
                                         <!-- /.col-md-11 -->
                                     </div>
