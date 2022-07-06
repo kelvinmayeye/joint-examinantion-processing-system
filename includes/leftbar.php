@@ -24,9 +24,6 @@ if($_SESSION['alogin']=="" || $_SESSION['role']=="" || $_SESSION['user_id']=="")
 
                 </li>
 
-                                   <!--  <li class="nav-header">
-                                        <span class="">Appearance</span>
-                                    </li> -->
                                     <?php if($_SESSION['role']==='admin'){ ?>
                                     <li class="has-children">
                                         <a href="#"><i class="fa fa-home"></i> <span>School</span> <i class="fa fa-angle-right arrow"></i></a>
@@ -94,11 +91,8 @@ if($_SESSION['alogin']=="" || $_SESSION['role']=="" || $_SESSION['user_id']=="")
                                         <a href="#"><i class="fa fa-line-chart"></i> <span>Result Analysis</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="best-10.php"><i class="fa fa-eye"></i> <span>Overall Best-ten</span></a></li>
-                                            <!-- <li><a href="manage-results.php"><i class="fa fa fa-server"></i> <span>Overall ten-looser</span></a></li> -->
-                                            <!-- <li><a href="subjectperformance.php"><i class="fa fa fa-server"></i> <span>Subject Performance</span></a></li> -->
-                                            <!-- <li><a href="schoolperformance.php"><i class="fa fa fa-server"></i> <span>School Performance</span></a></li> -->
+                                            <li><a href="schoolperformance.php"><i class="fa fa fa-eye"></i> <span>School Performance</span></a></li>
                                             <li><a href="generalresults.php"><i class="fa fa fa-eye"></i> <span>Student Detailed Results</span></a></li>
-                                            <!-- <li><a href="divisionperformance.php"><i class="fa fa fa-server"></i> <span>Division performance</span></a></li> -->
                                             </ul>
                                         </li>
 
