@@ -9,7 +9,7 @@ include('includes/config.php');
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Joint Result Management System</title>
+        <title>Joint Examination Processing Result System</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -31,7 +31,7 @@ include('includes/config.php');
             </div>
         </nav>
         <!-- Header - set the background image for the header in the line below-->
-        <header class="py-3 bg-image-full" style="background-image: url('images/wal1.jpg')">
+        <header class="py-3 bg-image-full" style="background-image: url('images/background-image.jpg')">
 
             <!-- Content section-->
         <section class="py-2">

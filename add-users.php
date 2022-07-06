@@ -9,7 +9,7 @@ $f_name=strtolower($_POST['firstname']);
 $m_name=$_POST['middlename'];
 $l_name=$_POST['lastname'];
 $sex=$_POST['optionsRadiosinline'];
-$username=$_POST['firstname'];
+$username=$f_name;
 $password=md5(12345678);
 $role=$_POST['role'];
 $sub_code=$_POST['sub_code'];
@@ -96,7 +96,7 @@ if(mysqli_query($conn,$sql)){
                                     <div class="panel-heading">
                                         <div class="panel-title">
                                             <h5>Fill the User information</h5>
-                                            <h6>User default password is 123456</h6>
+                                            <h6>User default password is 12345678</h6>
                                         </div>
                                     </div>
                                     <div class="panel-body">

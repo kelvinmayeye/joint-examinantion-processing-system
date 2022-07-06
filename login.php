@@ -88,7 +88,7 @@ $result_ad = mysqli_query($conn, $sql_ad);
 
             <div class="">
                 <div class="row">
- <h1 align="center">Joint Result Management System</h1>
+ <h1 align="center">Joint Examination Processing Result System</h1>
                     
                          <div class="col-lg-3"></div>
                     <div class="col-lg-6">
