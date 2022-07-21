@@ -10,8 +10,7 @@ $row=mysqli_fetch_array($ret);
 
 //get user school assign
 $school = $row['sch_id'];
-// echo $school;
-// exit();
+
 $sql = "select * from school where regno='$school'";
 $ret2=mysqli_query($conn,$sql);
 if(mysqli_num_rows($ret2) >0){
@@ -26,7 +25,7 @@ $ret3=mysqli_query($conn,$sch);
 if(mysqli_num_rows($ret3) >0){
  $row3 = mysqli_fetch_array($ret3);
 }else{
-    echo "Error: " . $sch . "<br>" . mysqli_error($conn);
+    
 }
 
 //user sub code to find sub name
@@ -37,7 +36,7 @@ $ret4=mysqli_query($conn,$sub_nam);
 if(mysqli_num_rows($ret4) >0){
  $row3 = mysqli_fetch_array($ret4);
 }else{
-    echo "Error: " . $sub_nam . "<br>" . mysqli_error($conn);
+    
 }
 
 if (isset($_POST['submit'])) {
@@ -50,11 +49,10 @@ $sql = "UPDATE users SET f_name='$f_name',m_name='$m_name',l_name='$l_name' WHER
 if (mysqli_query($conn, $sql)) {
     $msg = "Record updated successfully";
 } else {
-    $error = "Please try again";
+    
 }
 
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -64,7 +62,7 @@ if (mysqli_query($conn, $sql)) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SMS Admin| User Profile </title>
+    <title>JEPRS Admin| User Profile </title>
             <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
             <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
             <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">

@@ -14,9 +14,6 @@ $tempregno = mt_rand(1, 999);
 
 $student_id = $_POST['school'].$student_id;
 
-echo $student_id;
-
-
 $sql="INSERT INTO  student(sid,sch_id,f_name,m_name,l_name,sex) VALUES('$student_id','".$_POST['school']."','$f_name','$m_name','$l_name','$gender')";
 if(mysqli_query($conn,$sql)){
     
@@ -57,7 +54,7 @@ if(mysqli_query($conn,$sql)){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SMS Admin| Student Admission< </title>
+    <title>JEPRS Admin| Student Admission< </title>
             <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
             <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
             <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">

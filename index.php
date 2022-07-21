@@ -44,7 +44,7 @@ include('includes/config.php');
                     <div class="col-lg-4">
                         <h4>Available links</h4>
                         <hr color="#000" />
-                        <marquee direction="up" onmouseover="this.stop();" onmouseout="this.start();">
+                        <marquee direction="up" onmouseover="this.stop();" onmouseout="">
                    <ul> 
                     <li><a href="public-view.php" target="_blank">Public View</li>
                    </ul>
